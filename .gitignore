@@ -1,0 +1,8 @@
+/node_modules
+/.idea
+/static
+test.json
+.DS_Store
+*.log
+/mock
+output_*
