@@ -10,12 +10,20 @@ export default class HeaderNav extends React.Component {
     componentDidMount() {
         const me = this;
     }
+    clickHandler = (e) => {
+        let cur = e.currentTarget;
+        let allEle = cur.parentNode.children;
+        for (let i = 0; i < allEle.length; i++) {
+            allEle[i].classList.remove('has-click');
+        }
+        cur.classList.add('has-click');
+    }
 
     render() {
     	//let userData = indexUserData.result || {};
+        //<h2>{userData.blog_motto}</h2>
         const me = this; 
         let userData = me.props.data || {};
-        let arcData = indexArcData.result || {};
         return (
             <header>
                 <div className="user-info">
@@ -26,13 +34,12 @@ export default class HeaderNav extends React.Component {
                         <h1>
                             <a href="/">{userData.text_logo}</a>
                         </h1>
-                        <h2>{userData.blog_motto}</h2>
                     </div>
                     <ul className="nav">
-                        <li><Link to="/index">首页</Link></li>
-                        <li><Link to="/archive">归档</Link></li>
-                        <li><Link to="/manage">管理</Link></li>
-                        <li><Link to="/login">登陆/注册</Link></li>                        
+                        <li><Link to="/index" onClick={this.clickHandler.bind(this)}>首页</Link></li>
+                        <li onClick={this.clickHandler.bind(this)}><Link to="/archive">归档</Link></li>
+                        <li onClick={this.clickHandler.bind(this)}><Link to="/manage">管理</Link></li>
+                        <li onClick={this.clickHandler.bind(this)}><Link to="/login">登陆</Link></li>                        
                     </ul>
                 </div>
              </header>

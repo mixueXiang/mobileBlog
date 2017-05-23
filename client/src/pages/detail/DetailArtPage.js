@@ -1,5 +1,5 @@
 //ArchivePage.js 文章归档页
-//
+
 require('../../static/css/layout.less');
 require('./detail.less');
 import React, { Component } from 'react';
@@ -36,7 +36,6 @@ export default class DetailArtPage extends Component {
         HomeStore.getIndexArcData();
         //获取文章详情数据
         HomeStore.getArcDetail({'article_id': article_id});
-
     }
 
     addReading = () => {
@@ -97,9 +96,7 @@ export default class DetailArtPage extends Component {
     }
 
     render() {
-        //let arcData = indexArcData.result || [];
-		//let userData = indexUserData.result || {};
-        //let detailData = detailArticleData.result || {};
+    
         const me = this;
         let userData = me.state.userInfo || {};
         let arcDetail = me.state.arcDetail || {};

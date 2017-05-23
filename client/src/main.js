@@ -7,16 +7,19 @@ import EditPage from './pages/edit/EditPage';
 import ArchivePage from './pages/archive/ArchivePage';
 import ManagePage from './pages/manage/ManagePage';
 import DetailArtPage from './pages/detail/DetailArtPage';
+import PayPage from './pages/PayPage';
 //import ReactDOM from 'react-dom';
-//w
+
 render((
         <HashRouter> 
             <Switch>
+                <Route path="/pay" component={PayPage}/>
                 <Route path="/index" component={HomePage}/>
-                <Route path="/archive" component={ArchivePage}/>
                 <Route path="/manage" component={ManagePage}/>
+                <Route path="/archive" component={ArchivePage}/>
                 <Route path="/login" component={LoginPage}/> 
-                <Route path="/edit" component={EditPage}/> 
+                <Route path="/edit/new" component={EditPage}/> 
+                <Route path="/edit/:id" component={EditPage}/>
                 <Route path="/detail/:id" component={DetailArtPage}/> 
                 <Route path="/" component={HomePage}/>      
             </Switch> 

@@ -23,8 +23,9 @@ export default class HomePage extends Component {
 
     componentDidMount() {
         const me = this;
-        //获取用户信息
+        //获取个人信息数据
         HomeStore.getUserInfoData();
+        //获取首页文章数据
         HomeStore.getIndexArcData();
     }
 

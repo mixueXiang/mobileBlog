@@ -36,36 +36,25 @@ export let indexArcData = {
 			}
 		],
 		upvote_count: 10,
-	},
-	{
-		article_id: '2',
-		timestamp: '20162212',
-		title: 'aaa谈谈jQuery和js里有关元素位置和宽高的方法',
-		remark: 'aaaa总结一下jQuery、原生js设置和获取位置、宽高的方法。又修改了一些内容，为什么记忆力下滑-_-…',
-		read_count: 22,
-		detail: 'aaaa最近在学习如何实现客户端存储，这篇文章将主要分析H5的web storage以及它与传统的cookie之间的区别。1、cookie只适合存储少量文本数据，而web存储可存储大量数据',
-		comment_list: [
-			{
-				commentator: 'huang',
-				comment: '太棒啦'
-			}
-		],
-		upvote_count: 10,
-	},
-	{
-		article_id: '3',
-		timestamp: '20160525',
-		title: 'bbbb谈谈jQuery和js里有关元素位置和宽高的方法',
-		remark: 'bbbb总结一下jQuery、原生js设置和获取位置、宽高的方法。又修改了一些内容，为什么记忆力下滑-_-…',
-		read_count: 22,
-		detail: 'bbbb最近在学习如何实现客户端存储，这篇文章将主要分析H5的web storage以及它与传统的cookie之间的区别。1、cookie只适合存储少量文本数据，而web存储可存储大量数据',
-		comment_list: [
-			{
-				commentator: 'huang',
-				comment: '太棒啦'
-			}
-		],
-		upvote_count: 10,
-	},
-	]	
+	}]	
 };
+
+export let tagsData = {
+	error_no: 0,
+	error_msg: '',
+	result: 
+	[{
+        tag_id: '1',
+        tag_name: '技术',
+    },{
+        tag_id: '2',
+        tag_name: '前端',
+    },{
+    	tag_id: '3',
+    	tag_name: '工具',
+    },{
+        tag_id: '3',
+        tag_name: '后端',
+    }]
+};
+		

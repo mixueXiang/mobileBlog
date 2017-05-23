@@ -41,7 +41,7 @@ app.get('/users', function(req, res) {
     res.send(User.find());
 });
 app.get('/indexarc', function(req, res) { 
-    res.send(IndexArc.find());
+    res.send(IndexArc.find().limit(5));
 });
 app.get('/detail', function(req, res) { 
 	var id = req.query.article_id;
