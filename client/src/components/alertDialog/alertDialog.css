@@ -1,0 +1,88 @@
+//alertDialog.css
+.component-modal-dialog{
+	position: fixed;
+    *position: absolute;
+	left: 0; top: 0;
+	width: 100%;
+	height: 100%;
+    z-index: 200;
+}
+.component-modal-dialog .dialog-mask{
+	position: fixed;
+    *position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+    opacity: 0.6; 
+    filter:alpha(opacity=60);
+    _filter:alpha(opacity=60);
+    z-index: 201;
+}
+.component-modal-dialog .dialog{
+	position: fixed;
+	left: 10%;
+	top: 0;
+	width: 80%;
+	background-color: #fff;
+    z-index: 202;
+    border-radius: 0.2rem;
+}
+.component-modal-dialog .dialog .modal-head{
+	height: 35px; line-height: 35px; position: relative; 
+	border-bottom:#ccc 1px solid;
+}
+.component-modal-dialog .dialog .modal-head .title{
+	padding-left: 10px; padding-right: 40px; font-size: 16px;
+}
+
+.component-modal-dialog .dialog .modal-body{
+	min-height: 3rem;
+}	
+
+.component-modal-dialog .dialog .modal-button{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 1rem;
+	line-height: 1rem;
+	border-top: 1px #e0e0e0 solid;
+}
+.component-modal-dialog .dialog .modal-button .close-btn{
+	width: 100%; 
+	text-align: center;
+	font-size: 16px; 
+	cursor: pointer;
+	display: inline-block;
+	color: #333333;
+}
+.component-modal-dialog .dialog .modal-button  .half-close-btn{
+	width: 50%;
+}
+.component-modal-dialog .dialog .modal-button  .half-confirm-btn{
+	width: 50%;
+	border-left: 1px #e0e0e0 solid;
+}
+
+.component-alert{
+    padding: 20px;
+}
+.component-alert-content{
+    padding: 20px;
+    font-size: 16px;
+    line-height: 1.5;
+    overflow: hidden;
+    text-align: center;
+}
+.component-confirm{
+    padding: 40px;
+}
+.component-confirm-button-area{
+    text-align: center; padding: 10px;
+}
+.component-confirm-button-area a{
+    cursor: pointer;
+    margin-right: 5px;
+}

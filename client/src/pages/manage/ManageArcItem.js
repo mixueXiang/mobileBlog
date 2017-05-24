@@ -7,7 +7,7 @@ import {wrapperClick} from '../../utils/tap';
 
 export default class ArchiveArticleItem extends React.Component {
     
-    handlerTap(e) {
+    jumpToDetailPage(e) {
         let cur = e.currentTarget;
         let link = cur.getAttribute('data-href');
         let url = location.href.replace(location.hash, '') + '#' + link;
@@ -21,19 +21,33 @@ export default class ArchiveArticleItem extends React.Component {
         location.href = url;
     }
 
+    delHandler = (e) => {
+        let params = {};
+        let cur = e.currentTarget;
+        let nIndex = cur.getAttribute('data-index');
+        let arcId = cur.getAttribute('data-id');
+        params = {
+            'arc_index': nIndex,
+            'arc_id': arcId
+        };
+        this.props.delArticle && this.props.delArticle(params);
+    }
+
     render() {
     	let articleData = this.props.data;
-        let link = '/edit/' + articleData._id;
+        let nIndex = this.props.nIndex;
+        let editLink = '/edit/' + articleData._id;
+        let detailLink = '/detail/' + articleData._id;
         return (
             <article className="article-li">
-            	<div className="article-main" data-href={link} onClick={wrapperClick(this.handlerTap.bind(this))}>
+            	<div className="article-main" data-href={detailLink} onClick={wrapperClick(this.jumpToDetailPage.bind(this))}>
             		<div className="time">{articleData.timestamp}</div>
         			<div className="article-title">{articleData.title}</div>        				
             	</div>  
                 <div className="article-act">
                     <span>评论管理</span>
-                    <sapn data-href={link} onClick={this.jumpToEditPage}>编辑</sapn>
-                    <span>删除</span>
+                    <sapn data-href={editLink} onClick={this.jumpToEditPage}>编辑</sapn>
+                    <span data-index={nIndex} data-id={articleData._id} onClick={this.delHandler}>删除</span>
                 </div>		
             </article>
         )

@@ -41,18 +41,39 @@ app.get('/users', function(req, res) {
     res.send(User.find());
 });
 app.get('/indexarc', function(req, res) { 
-    res.send(IndexArc.find().limit(5));
+    res.send(IndexArc.find());
 });
 app.get('/detail', function(req, res) { 
 	var id = req.query.article_id;
-	console.log('======id',id);
     res.send(IndexArc.findOne({_id:id}));
 });
+//增加浏览量
 app.post('/addread', function(req, res) { 
     var id = req.query.article_id;
     var count = req.query.read_count;
-    console.log('======idandcount', id);
     res.send(IndexArc.update({_id:id}, {read_count: count}));
+});
+//新增文章
+app.get('/addarticle', function(req, res) { 
+    var arc_content = JSON.parse(req.query.arc_detail);
+    var arc = new IndexArc(arc_content);
+    res.send(arc.save());
+});
+//编辑文章
+app.get('/editarticle', function(req, res) { 
+    var arc_id = req.query.arc_id;
+    var arc_content = JSON.parse(req.query.arc_detail);
+    res.send(IndexArc.update({_id:arc_id},{
+        title: arc_content.title,
+        remark: arc_content.remark,
+        detail: arc_content.detail,
+        archive_type: arc_content.archive_type,
+    })); 
+});
+//删除文章
+app.get('/delarticle', function(req, res) { 
+    var arc_id= req.query.arc_id;
+    res.send(IndexArc.remove({_id: arc_id}));
 });
 
 // 启动一个服务，监听从端口进入的所有连接请求

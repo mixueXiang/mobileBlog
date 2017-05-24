@@ -1,12 +1,10 @@
 //IndexArticleItem.js 首页文章列表Item
 
-require('./indexArticleItem.less');
+import'./indexArticleItem.less';
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import {Link} from 'react-router-dom';
-
 import {wrapperClick} from '../../utils/tap';
-
 
 export default class IndexArticleItem extends React.Component {
    

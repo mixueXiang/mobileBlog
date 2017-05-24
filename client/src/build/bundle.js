@@ -68,19 +68,19 @@
 
 	var _EditPage2 = _interopRequireDefault(_EditPage);
 
-	var _ArchivePage = __webpack_require__(232);
+	var _ArchivePage = __webpack_require__(235);
 
 	var _ArchivePage2 = _interopRequireDefault(_ArchivePage);
 
-	var _ManagePage = __webpack_require__(236);
+	var _ManagePage = __webpack_require__(239);
 
 	var _ManagePage2 = _interopRequireDefault(_ManagePage);
 
-	var _DetailArtPage = __webpack_require__(243);
+	var _DetailArtPage = __webpack_require__(246);
 
 	var _DetailArtPage2 = _interopRequireDefault(_DetailArtPage);
 
-	var _PayPage = __webpack_require__(246);
+	var _PayPage = __webpack_require__(249);
 
 	var _PayPage2 = _interopRequireDefault(_PayPage);
 
@@ -25534,7 +25534,7 @@
 
 
 	// module
-	exports.push([module.id, "header {\n  background: #3c9;\n  padding: 16px 0;\n  height: 1.7rem;\n  box-shadow: 2px 4px 5px rgba(3, 3, 3, 0.2);\n}\nheader .user-info {\n  width: 95%;\n  height: 100%;\n  margin: 0 auto;\n  position: relative;\n}\nheader .user-info .img-logo {\n  float: left;\n  width: 1.2rem;\n  height: 1.2rem;\n  background: url(" + __webpack_require__(212) + ") no-repeat;\n  background-size: 100% 100%;\n  border-radius: 100%;\n  overflow: hidden;\n}\nheader .user-info .text-logo {\n  float: left;\n  width: 75%;\n  margin-left: 20px;\n  color: #fff;\n}\nheader .user-info .text-logo h1 {\n  font-size: 0.64rem;\n  line-height: 1.5;\n}\nheader .user-info .text-logo h1 a {\n  color: #fff;\n}\nheader .user-info .text-logo h2 {\n  font-weight: normal;\n  font-size: 12px;\n}\nheader .user-info .nav {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-pack: distribute;\n  justify-content: space-around;\n}\nheader .user-info .nav li {\n  padding: 0 5px 1px 5px;\n  border-bottom: 3px solid transparent;\n}\nheader .user-info .nav li a {\n  color: white;\n  font-size: 15px;\n}\nheader .user-info .nav .has-click {\n  border-bottom: 3px solid #fff;\n}\n", ""]);
+	exports.push([module.id, "header {\n  background: #3c9;\n  padding: 16px 0;\n  height: 1.7rem;\n  box-shadow: 2px 4px 5px rgba(3, 3, 3, 0.2);\n}\nheader .user-info {\n  width: 95%;\n  height: 100%;\n  margin: 0 auto;\n  position: relative;\n}\nheader .user-info .img-logo {\n  float: left;\n  width: 1.2rem;\n  height: 1.2rem;\n  background: url(" + __webpack_require__(212) + ") no-repeat;\n  background-size: 100% 100%;\n  border-radius: 100%;\n  overflow: hidden;\n}\nheader .user-info .text-logo {\n  float: left;\n  width: 75%;\n  margin-left: 20px;\n  color: #fff;\n}\nheader .user-info .text-logo h1 {\n  font-size: 0.64rem;\n  line-height: 1.5;\n}\nheader .user-info .text-logo h1 a {\n  color: #fff;\n}\nheader .user-info .text-logo h2 {\n  font-weight: normal;\n  font-size: 12px;\n}\nheader .user-info .nav {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-pack: distribute;\n  justify-content: space-around;\n}\nheader .user-info .nav li {\n  padding: 0 5px 1px 5px;\n  border-bottom: 2px solid transparent;\n}\nheader .user-info .nav li a {\n  color: white;\n  font-size: 15px;\n}\nheader .user-info .nav .has-click {\n  border-bottom: 3px solid #fff;\n}\n", ""]);
 
 	// exports
 
@@ -26314,6 +26314,8 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+	__webpack_require__(219);
+
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -26322,7 +26324,7 @@
 
 	var _reactRouterDom = __webpack_require__(160);
 
-	var _tap = __webpack_require__(219);
+	var _tap = __webpack_require__(221);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26330,11 +26332,7 @@
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	//IndexArticleItem.js 首页文章列表Item
-
-	__webpack_require__(220);
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //IndexArticleItem.js 首页文章列表Item
 
 	var IndexArticleItem = function (_React$Component) {
 	    _inherits(IndexArticleItem, _React$Component);
@@ -26443,6 +26441,46 @@
 
 /***/ }),
 /* 219 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(220);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(213)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!../../../../node_modules/_css-loader@0.17.0@css-loader/index.js!../../../../node_modules/_less-loader@2.2.3@less-loader/index.js!../../../../node_modules/_autoprefixer-loader@3.2.0@autoprefixer-loader/index.js!./indexArticleItem.less", function() {
+				var newContent = require("!!../../../../node_modules/_css-loader@0.17.0@css-loader/index.js!../../../../node_modules/_less-loader@2.2.3@less-loader/index.js!../../../../node_modules/_autoprefixer-loader@3.2.0@autoprefixer-loader/index.js!./indexArticleItem.less");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ }),
+/* 220 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(211)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".index-article article {\n  background: #fff;\n  margin-bottom: 0.6rem;\n}\n.index-article .article-title {\n  padding: 10px 3% 0 3%;\n  font-size: 16px;\n  line-height: 1.5;\n  border-left: 5px solid #3c9;\n  color: #2ca6cb;\n}\n.index-article .article-author {\n  padding: 10px 4% 10px 0;\n  text-align: right;\n  border-bottom: 1px solid #dbdbdb;\n}\n.index-article .article-author strong {\n  font-weight: normal;\n  color: #2ca6cb;\n}\n.index-article .article-time {\n  text-align: left;\n  padding: 10px 0 0 4%;\n  font-size: 14px;\n}\n.index-article .article-content {\n  padding: 15px 4%;\n  font-size: 16px;\n}\n.index-article .article-content p {\n  line-height: 1.5;\n  color: #413f3f;\n}\n.index-article .article-content .article-more-link {\n  margin-top: 15px;\n}\n.index-article .article-content .article-more-link span {\n  display: inline-block;\n  padding: 2px 15px;\n  border-radius: 15px;\n  background: #ddd;\n  color: #817c7c;\n}\n.index-article .post-info {\n  padding: 0 4% 10px 4%;\n  font-size: 14px;\n  text-align: right;\n}\n.index-article .post-info > span {\n  margin: 0 10px;\n}\n", ""]);
+
+	// exports
+
+
+/***/ }),
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-api@0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -27283,46 +27321,6 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "tap.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 220 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(221);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(213)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!../../../../node_modules/_css-loader@0.17.0@css-loader/index.js!../../../../node_modules/_less-loader@2.2.3@less-loader/index.js!../../../../node_modules/_autoprefixer-loader@3.2.0@autoprefixer-loader/index.js!./indexArticleItem.less", function() {
-				var newContent = require("!!../../../../node_modules/_css-loader@0.17.0@css-loader/index.js!../../../../node_modules/_less-loader@2.2.3@less-loader/index.js!../../../../node_modules/_autoprefixer-loader@3.2.0@autoprefixer-loader/index.js!./indexArticleItem.less");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ }),
-/* 221 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(211)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".index-article article {\n  background: #fafafa;\n  margin-bottom: 0.6rem;\n}\n.index-article .article-title {\n  padding: 10px 3% 0 3%;\n  font-size: 16px;\n  line-height: 1.5;\n  border-left: 5px solid #3c9;\n  color: #2ca6cb;\n}\n.index-article .article-author {\n  padding: 10px 4% 10px 0;\n  text-align: right;\n  border-bottom: 1px solid #dbdbdb;\n}\n.index-article .article-author strong {\n  font-weight: normal;\n  color: #2ca6cb;\n}\n.index-article .article-time {\n  text-align: left;\n  padding: 10px 0 0 4%;\n  font-size: 14px;\n}\n.index-article .article-content {\n  padding: 15px 4%;\n  font-size: 16px;\n}\n.index-article .article-content p {\n  line-height: 1.5;\n  color: #413f3f;\n}\n.index-article .article-content .article-more-link {\n  margin-top: 15px;\n}\n.index-article .article-content .article-more-link span {\n  display: inline-block;\n  padding: 2px 15px;\n  border-radius: 15px;\n  background: #ddd;\n  color: #817c7c;\n}\n.index-article .post-info {\n  padding: 0 4% 10px 4%;\n  font-size: 14px;\n  text-align: right;\n}\n.index-article .post-info > span {\n  margin: 0 10px;\n}\n", ""]);
-
-	// exports
-
-
-/***/ }),
 /* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -27357,7 +27355,7 @@
 
 
 	// module
-	exports.push([module.id, "html,\nbody {\n  color: #817c7c;\n  background: #eef0f2;\n}\nbody,\ndiv,\nspan,\nobject,\niframe,\nh1,\nh2,\nh3,\nh4,\nh5,\nh6,\np,\npre,\na,\nabbr,\nacronym,\naddress,\ncode,\ndel,\ndfn,\nem,\nimg,\ndl,\ndt,\ndd,\nol,\nul,\nli,\nfieldset,\nform,\nlabel,\nlegend,\ncaption,\ntbody,\ntfoot,\nthead,\ntr {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  outline: 0;\n  font-weight: inherit;\n  font-style: inherit;\n  font-family: inherit;\n  font-size: 100%;\n  vertical-align: baseline;\n}\na {\n  text-decoration: none;\n  color: #ccc;\n}\nli {\n  list-style: none;\n}\nimg {\n  max-width: 100%;\n  max-height: 100%;\n  display: block;\n}\ntable {\n  border-collapse: separate;\n  border-spacing: 0;\n  vertical-align: middle;\n}\ncaption,\nth,\ntd {\n  text-align: left;\n  font-weight: normal;\n  vertical-align: middle;\n}\na img {\n  border: none;\n}\n#mobileblog {\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  width: 100%;\n  font-size: 14px;\n}\n.wrapper {\n  width: 100%;\n  margin: 0 auto;\n}\n.container {\n  width: 95%;\n  margin: 0 auto;\n  min-height: 5rem;\n}\n.main {\n  margin: 16px 0;\n  line-height: 1.8;\n}\n", ""]);
+	exports.push([module.id, "html,\nbody {\n  color: #817c7c;\n  background: #eef0f2;\n}\nbody,\ndiv,\nspan,\nobject,\niframe,\nh1,\nh2,\nh3,\nh4,\nh5,\nh6,\np,\npre,\na,\nabbr,\nacronym,\naddress,\ncode,\ndel,\ndfn,\nem,\nimg,\ndl,\ndt,\ndd,\nol,\nul,\nli,\nfieldset,\nform,\nlabel,\nlegend,\ncaption,\ntbody,\ntfoot,\nthead,\ntr {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  outline: 0;\n  font-weight: inherit;\n  font-style: inherit;\n  font-family: inherit;\n  font-size: 100%;\n  vertical-align: baseline;\n}\na {\n  text-decoration: none;\n  color: #ccc;\n}\nli {\n  list-style: none;\n}\nimg {\n  max-width: 100%;\n  max-height: 100%;\n  display: block;\n}\ntable {\n  border-collapse: separate;\n  border-spacing: 0;\n  vertical-align: middle;\n}\ncaption,\nth,\ntd {\n  text-align: left;\n  font-weight: normal;\n  vertical-align: middle;\n}\na img {\n  border: none;\n}\n#mobileblog {\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  width: 100%;\n  font-size: 14px;\n  background: #fafafa;\n}\n.wrapper {\n  width: 100%;\n  margin: 0 auto;\n}\n.container {\n  width: 95%;\n  margin: 0 auto;\n  min-height: 5rem;\n}\n.main {\n  margin: 16px 0;\n  line-height: 1.8;\n}\n", ""]);
 
 	// exports
 
@@ -27382,9 +27380,13 @@
 	    var INDEX_ARC_LIST = hostName + '/indexarc';
 	    var ARC_DETAIL = hostName + '/detail';
 	    var ADD_READING = hostName + '/addread';
+	    var ADD_ARTICLE = hostName + '/addarticle';
+	    var EDIT_ARTICLE = hostName + '/editarticle';
+	    var DEL_ARTICLE = hostName + '/delarticle';
 
 	    var HomeStore = StoreBase.createClass({
 	        actions: {
+	            //获取用户信息
 	            getUserInfoData: function getUserInfoData() {
 	                var me = this;
 	                Utils.getAjaxData(USER_INFO, {}, function (data) {
@@ -27394,6 +27396,7 @@
 	                    me.error('userInfo', data);
 	                });
 	            },
+	            //获取文章列表
 	            getIndexArcData: function getIndexArcData() {
 	                var me = this;
 	                Utils.getAjaxData(INDEX_ARC_LIST, {}, function (data) {
@@ -27404,6 +27407,7 @@
 	                    console.log('errordata', data);
 	                });
 	            },
+	            //获取文章详情
 	            getArcDetail: function getArcDetail(params) {
 	                var me = this;
 	                Utils.getAjaxData(ARC_DETAIL, params, function (data) {
@@ -27413,6 +27417,7 @@
 	                    me.error('arcDetail', data);
 	                });
 	            },
+	            //增加浏览量
 	            setAddReading: function setAddReading(params) {
 	                var me = this;
 	                Utils.postAjaxData(ADD_READING, params, {}, function (data) {
@@ -27420,6 +27425,39 @@
 	                    me.done('addReading', data, true);
 	                }, function (data) {
 	                    me.error('addReading', data);
+	                });
+	            },
+
+	            //新增文章
+	            addArticle: function addArticle(params) {
+	                var me = this;
+	                Utils.getAjaxData(ADD_ARTICLE, params, function (data) {
+	                    var data = data;
+	                    me.done('addArticle', data, true);
+	                }, function (data) {
+	                    me.error('addArticle', data);
+	                });
+	            },
+
+	            //编辑文章
+	            editArticle: function editArticle(params) {
+	                var me = this;
+	                Utils.getAjaxData(EDIT_ARTICLE, params, function (data) {
+	                    var data = data;
+	                    me.done('editArticle', data, true);
+	                }, function (data) {
+	                    me.error('editArticle', data);
+	                });
+	            },
+
+	            //删除文章   
+	            delArticle: function delArticle(params) {
+	                var me = this;
+	                Utils.getAjaxData(DEL_ARTICLE, params, function (data) {
+	                    var data = data;
+	                    me.done('delArticle', data, true);
+	                }, function (data) {
+	                    me.error('delArticle', data);
 	                });
 	            }
 	        },
@@ -27740,7 +27778,7 @@
 
 
 	// module
-	exports.push([module.id, ".login-wrapper {\n  background: #fafafa;\n  padding: 0.6rem 15px;\n  border-radius: 6px;\n  margin-top: 1.2rem;\n}\n.login-wrapper .notice-info {\n  font-size: 16px;\n  line-height: 1.5;\n  padding-left: 0.65rem;\n}\n.login-wrapper .input-wrapper {\n  margin: 20px 0;\n}\n.login-wrapper .input-wrapper input {\n  width: 70%;\n  margin: 0 auto;\n  color: #817c7c;\n  padding: 6px 10px;\n  margin-bottom: 20px;\n  line-height: 2;\n  border-radius: 6px;\n  border: 1px solid #3c9;\n  font-size: 14px;\n}\n.login-wrapper .input-wrapper .error-info {\n  text-align: center;\n  color: red;\n}\n.login-wrapper .input-wrapper .login-conform {\n  border-radius: 0.6rem;\n  background-color: #3c9;\n  width: 70%;\n  margin: 20px auto;\n  text-align: center;\n  color: #fff;\n  line-height: 2.8;\n}\n.login-wrapper .else-login {\n  text-align: center;\n  font-size: 16px;\n}\n", ""]);
+	exports.push([module.id, ".login-wrapper {\n  background: #fff;\n  padding: 0.6rem 15px;\n  border-radius: 6px;\n  margin-top: 1.2rem;\n}\n.login-wrapper .notice-info {\n  font-size: 16px;\n  line-height: 1.5;\n  padding-left: 0.65rem;\n}\n.login-wrapper .input-wrapper {\n  margin: 20px 0;\n}\n.login-wrapper .input-wrapper input {\n  width: 70%;\n  margin: 0 auto;\n  color: #817c7c;\n  padding: 6px 10px;\n  margin-bottom: 20px;\n  line-height: 2;\n  border-radius: 6px;\n  border: 1px solid #3c9;\n  font-size: 14px;\n}\n.login-wrapper .input-wrapper .error-info {\n  text-align: center;\n  color: red;\n}\n.login-wrapper .input-wrapper .login-conform {\n  border-radius: 0.6rem;\n  background-color: #3c9;\n  width: 70%;\n  margin: 20px auto;\n  text-align: center;\n  color: #fff;\n  line-height: 2.8;\n}\n.login-wrapper .else-login {\n  text-align: center;\n  font-size: 16px;\n}\n", ""]);
 
 	// exports
 
@@ -27773,6 +27811,12 @@
 
 	var _HeaderNav2 = _interopRequireDefault(_HeaderNav);
 
+	var _indexData = __webpack_require__(208);
+
+	var _AlertDialog = __webpack_require__(232);
+
+	var _AlertDialog2 = _interopRequireDefault(_AlertDialog);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27796,11 +27840,21 @@
 	            var me = _this;
 	            console.log('parames', me.props);
 	            var article_id = me.props.match.params.id || '';
-	            console.log('=====paramsid', article_id);
+
 	            //获取用户信息
 	            HomeStore.getUserInfoData();
 	            //获取文章详情数据
-	            HomeStore.getArcDetail({ 'article_id': article_id });
+	            if (article_id) {
+	                //当前页是编辑文章页
+	                HomeStore.getArcDetail({ 'article_id': article_id });
+	                _this.setState({
+	                    articleId: article_id
+	                });
+	            } else {
+	                _this.setState({
+	                    articleId: 'new'
+	                });
+	            }
 	        };
 
 	        _this.afterGetUserInfo = function (data) {
@@ -27821,28 +27875,161 @@
 	                return;
 	            }
 	            me.setState({
-	                arcDetail: data,
-	                article_id: data._id
+	                arcDetail: data
+	            });
+	        };
+
+	        _this.afterGetAddArticle = function (data) {
+	            var me = _this;
+	            console.log('=====addRrticle', data);
+	            if (!data) {
+	                console.log('addRrticleFailed', data);
+	                me.setState({
+	                    showDialog: true,
+	                    dialogMsg: '添加文章失败'
+	                });
+	            } else {
+	                console.log('addRrticleSuccess', data);
+	                me.setState({
+	                    showDialog: true,
+	                    dialogMsg: '添加文章成功'
+	                });
+	                var link = '/manage';
+	                location.href = location.href.replace(location.hash, '') + '#' + link;
+	            }
+	        };
+
+	        _this.afterGetEditArticle = function (data) {
+	            var me = _this;
+	            console.log('=====editRrticle', data);
+	            if (!data) {
+	                console.log('editRrticleFailed', data);
+	                me.setState({
+	                    showDialog: true,
+	                    dialogMsg: '修改文章失败'
+	                });
+	            } else {
+	                console.log('editRrticleSuccess', data);
+	                me.setState({
+	                    showDialog: true,
+	                    dialogMsg: '修改文章成功'
+	                });
+	            }
+	        };
+
+	        _this.tagClickHandler = function (e) {
+	            var curArcDetail = _this.state.arcDetail;
+	            var cur = e.currentTarget;
+	            var tagId = cur.getAttribute('data-id');
+	            var tagName = cur.getAttribute('data-name');
+	            var allEle = cur.parentNode.children;
+
+	            for (var i = 0; i < allEle.length; i++) {
+	                allEle[i].classList.remove('has-click');
+	            }
+	            cur.classList.add('has-click');
+	            curArcDetail['archive_type'] = tagName;
+	            _this.setState({
+	                arcDetail: curArcDetail
+	            });
+	        };
+
+	        _this.inputChangeHandler = function (e) {
+	            var cur = e.currentTarget;
+	            var curArcDetail = _this.state.arcDetail;
+
+	            curArcDetail[cur.name] = cur.value;
+	            console.log('===curArcDetail', curArcDetail);
+	            _this.setState({
+	                arcDetail: curArcDetail
+	            });
+	        };
+
+	        _this.saveInfo = function () {
+	            var arcDetail = _this.state.arcDetail;
+	            var articleId = _this.state.articleId;
+	            var params = {};
+	            console.log('saveArticleInfo', arcDetail);
+
+	            //数据有效性验证
+	            if (!arcDetail.title) {
+	                _this.setState({
+	                    showDialog: true,
+	                    dialogMsg: '文章题目不能为空'
+	                });
+	                return;
+	            }
+	            if (!arcDetail.remark) {
+	                _this.setState({
+	                    showDialog: true,
+	                    dialogMsg: '文章摘要不能为空'
+	                });
+	                return;
+	            }
+	            if (!arcDetail.detail) {
+	                _this.setState({
+	                    showDialog: true,
+	                    dialogMsg: '文章内容不能为空'
+	                });
+	                return;
+	            }
+	            if (!arcDetail.archive_type) {
+	                _this.setState({
+	                    showDialog: true,
+	                    dialogMsg: '文章分类标签不能为空'
+	                });
+	                return;
+	            }
+
+	            //当数据有效时，向新增文章接口发起请求
+	            if (articleId != 'new') {
+	                //编辑文章页
+	                params = {
+	                    'arc_id': articleId,
+	                    'arc_detail': JSON.stringify(arcDetail)
+	                };
+	                HomeStore.editArticle(params);
+	            } else {
+	                //新建文章页
+	                params = {
+	                    'arc_detail': JSON.stringify(arcDetail)
+	                };
+	                HomeStore.addArticle(params);
+	            }
+	        };
+
+	        _this.closeDialog = function () {
+	            _this.setState({
+	                showDialog: false
 	            });
 	        };
 
 	        _this.state = {
 	            userInfo: {},
 	            arcDetail: {},
-	            article_id: ''
+	            articleId: '',
+	            showDialog: false,
+	            dialogMsg: ''
+
 	        };
 	        HomeStore.dispose();
-	        HomeStore.listen(['userInfo', 'arcDetail'], _this);
+	        HomeStore.listen(['userInfo', 'arcDetail', 'addArticle', 'editArticle'], _this);
 	        return _this;
 	    }
+
+	    //保存修改或者新增内容到文章的状态中
+
 
 	    _createClass(EditPage, [{
 	        key: 'render',
 	        value: function render() {
+	            var _this2 = this;
 
 	            var me = this;
 	            var userData = me.state.userInfo || {};
 	            var arcDetail = me.state.arcDetail || {};
+	            console.log('tagsData', _indexData.tagsData);
+	            var tagsArr = _indexData.tagsData.result || [];
 
 	            return _react2.default.createElement(
 	                'div',
@@ -27851,6 +28038,7 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'container' },
+	                    _react2.default.createElement(_AlertDialog2.default, { dialogShow: me.state.showDialog, content: me.state.dialogMsg, close: this.closeDialog }),
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'main' },
@@ -27859,21 +28047,59 @@
 	                            { className: 'edit-content' },
 	                            _react2.default.createElement(
 	                                'div',
-	                                { className: 'title' },
+	                                { className: 'input-wrapper' },
 	                                _react2.default.createElement(
-	                                    'p',
+	                                    'h3',
 	                                    null,
-	                                    arcDetail.title
-	                                )
+	                                    '\u6807\u9898'
+	                                ),
+	                                _react2.default.createElement('input', { type: 'text', name: 'title', autofocus: 'autofocus', maxlength: '30', required: 'required', value: arcDetail.title, onChange: this.inputChangeHandler })
 	                            ),
 	                            _react2.default.createElement(
 	                                'div',
-	                                { className: 'content' },
+	                                { className: 'input-wrapper' },
 	                                _react2.default.createElement(
-	                                    'p',
+	                                    'h3',
 	                                    null,
-	                                    arcDetail.detail
-	                                )
+	                                    '\u6458\u8981'
+	                                ),
+	                                _react2.default.createElement('textarea', { name: 'remark', id: '', cols: '30', rows: '4', required: 'required', maxlength: '160', value: arcDetail.remark, onChange: this.inputChangeHandler })
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'input-wrapper con-detail' },
+	                                _react2.default.createElement(
+	                                    'h3',
+	                                    null,
+	                                    '\u5185\u5BB9'
+	                                ),
+	                                _react2.default.createElement('textarea', { name: 'detail', id: '', cols: '30', rows: '10', required: 'required', maxlength: '3000', value: arcDetail.detail, onChange: this.inputChangeHandler })
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'input-wrapper con-tag' },
+	                                _react2.default.createElement(
+	                                    'h3',
+	                                    null,
+	                                    '\u5206\u7C7B'
+	                                ),
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'has-tags' },
+	                                    tagsArr.map(function (item, index) {
+	                                        return _react2.default.createElement(
+	                                            'span',
+	                                            { 'data-id': item.tag_id, 'data-name': item.tag_name, onClick: _this2.tagClickHandler },
+	                                            item.tag_name
+	                                        );
+	                                    })
+	                                ),
+	                                _react2.default.createElement('input', { type: 'text', ref: 'archiveType', name: 'archive_type', maxlength: '6', placeholder: '\u8BF7\u6DFB\u52A0\u65B0\u5206\u7C7B', value: arcDetail.archive_type, onChange: this.inputChangeHandler })
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'save', onClick: this.saveInfo },
+	                                '\u4FDD\u5B58'
 	                            )
 	                        )
 	                    ),
@@ -27925,13 +28151,166 @@
 
 
 	// module
-	exports.push([module.id, ".edit-wrapper {\n  background: #fff;\n}\n", ""]);
+	exports.push([module.id, ".edit-wrapper .edit-content {\n  background: #fafafa;\n  padding-top: 10px;\n}\n.edit-wrapper .edit-content .input-wrapper {\n  margin: 10px;\n  font-size: 16px;\n}\n.edit-wrapper .edit-content .input-wrapper input {\n  width: 98%;\n  margin-top: 10px;\n  padding: 8px 2px;\n  color: #3e3e3e;\n  overflow: hidden;\n  font-size: 16px;\n  text-overflow: ellipsis;\n}\n.edit-wrapper .edit-content .input-wrapper textarea {\n  margin-top: 8px;\n  width: 98%;\n  line-height: 1.5;\n  font-size: 16px;\n  color: #3e3e3e;\n}\n.edit-wrapper .edit-content .con-tag h3 {\n  margin-bottom: 10px;\n}\n.edit-wrapper .edit-content .con-tag .has-tags span {\n  margin-right: 20px;\n  min-width: 1.36rem;\n  font-size: 14px;\n  padding: 3px 6px;\n  border-radius: 20px;\n  border: 1px solid #817c7c;\n  margin: 0 10px 10px 10px;\n  text-align: center;\n  display: inline-block;\n}\n.edit-wrapper .edit-content .con-tag .has-tags .has-click {\n  border: 1px solid #3c9;\n}\n.edit-wrapper .edit-content .save {\n  border-radius: 0.6rem;\n  background-color: #3c9;\n  width: 70%;\n  margin: 20px auto;\n  text-align: center;\n  color: #fff;\n  line-height: 2.8;\n}\n", ""]);
 
 	// exports
 
 
 /***/ }),
 /* 232 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-api@0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	__webpack_require__(233);
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(159);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //AlertDialog.js 弹窗组件
+
+	var AlertDialog = function (_React$Component) {
+	    _inherits(AlertDialog, _React$Component);
+
+	    function AlertDialog() {
+	        var _ref;
+
+	        var _temp, _this, _ret;
+
+	        _classCallCheck(this, AlertDialog);
+
+	        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	            args[_key] = arguments[_key];
+	        }
+
+	        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AlertDialog.__proto__ || Object.getPrototypeOf(AlertDialog)).call.apply(_ref, [this].concat(args))), _this), _this.componentDidMount = function () {
+	            _this.center();
+	        }, _this.center = function () {
+	            var dialog = document.querySelector('.component-modal-dialog .dialog');
+	            //dialog.style.left = ((window.innerWidth - dialog.offsetWidth) /2)+"px";
+	            dialog.style.top = (window.innerHeight - dialog.offsetHeight) / 2 + "px";
+	        }, _this.getbutton = function () {
+	            var me = _this;
+	            if (me.props.close && me.props.confirm) {
+	                return _react2.default.createElement(
+	                    'div',
+	                    null,
+	                    _react2.default.createElement(
+	                        'a',
+	                        { className: 'close-btn half-close-btn', onTouchStart: me.props.close },
+	                        '\u5173\u95ED'
+	                    ),
+	                    _react2.default.createElement(
+	                        'a',
+	                        { className: 'close-btn half-confirm-btn', onTouchStart: me.props.confirm },
+	                        '\u786E\u8BA4'
+	                    )
+	                );
+	            }
+	            return _react2.default.createElement(
+	                'a',
+	                { className: 'close-btn', onTouchStart: me.props.close },
+	                '\u5173\u95ED'
+	            );
+	        }, _temp), _possibleConstructorReturn(_this, _ret);
+	    }
+
+	    _createClass(AlertDialog, [{
+	        key: 'render',
+	        value: function render() {
+	            var me = this;
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'component-modal-dialog', style: { display: this.props.dialogShow ? 'block' : 'none' } },
+	                _react2.default.createElement('div', { className: 'dialog-mask', onTouchStart: me.props.close }),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'dialog' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'modal-body' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'component-alert-content' },
+	                            me.props.content ? me.props.content : me.props.children
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'modal-button' },
+	                        me.getbutton()
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return AlertDialog;
+	}(_react2.default.Component);
+
+	exports.default = AlertDialog;
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "AlertDialog.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 233 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(234);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(213)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!../../../../node_modules/_css-loader@0.17.0@css-loader/index.js!../../../../node_modules/_less-loader@2.2.3@less-loader/index.js!../../../../node_modules/_autoprefixer-loader@3.2.0@autoprefixer-loader/index.js!./alertDialog.css", function() {
+				var newContent = require("!!../../../../node_modules/_css-loader@0.17.0@css-loader/index.js!../../../../node_modules/_less-loader@2.2.3@less-loader/index.js!../../../../node_modules/_autoprefixer-loader@3.2.0@autoprefixer-loader/index.js!./alertDialog.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ }),
+/* 234 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(211)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".component-modal-dialog {\n  position: fixed;\n  *position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 200;\n}\n.component-modal-dialog .dialog-mask {\n  position: fixed;\n  *position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  background-color: black;\n  opacity: 0.6;\n  filter: alpha(opacity=60);\n  _filter: alpha(opacity=60);\n  z-index: 201;\n}\n.component-modal-dialog .dialog {\n  position: fixed;\n  left: 10%;\n  top: 0;\n  width: 80%;\n  background-color: #fff;\n  z-index: 202;\n  border-radius: 0.2rem;\n}\n.component-modal-dialog .dialog .modal-head {\n  height: 35px;\n  line-height: 35px;\n  position: relative;\n  border-bottom: #ccc 1px solid;\n}\n.component-modal-dialog .dialog .modal-head .title {\n  padding-left: 10px;\n  padding-right: 40px;\n  font-size: 16px;\n}\n.component-modal-dialog .dialog .modal-body {\n  min-height: 3rem;\n}\n.component-modal-dialog .dialog .modal-button {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: 1rem;\n  line-height: 1rem;\n  border-top: 1px #e0e0e0 solid;\n}\n.component-modal-dialog .dialog .modal-button .close-btn {\n  width: 100%;\n  text-align: center;\n  font-size: 16px;\n  cursor: pointer;\n  display: inline-block;\n  color: #333333;\n}\n.component-modal-dialog .dialog .modal-button .half-close-btn {\n  width: 50%;\n}\n.component-modal-dialog .dialog .modal-button .half-confirm-btn {\n  width: 50%;\n  border-left: 1px #e0e0e0 solid;\n}\n.component-alert {\n  padding: 20px;\n}\n.component-alert-content {\n  padding: 20px;\n  font-size: 16px;\n  line-height: 1.5;\n  overflow: hidden;\n  text-align: center;\n}\n.component-confirm {\n  padding: 40px;\n}\n.component-confirm-button-area {\n  text-align: center;\n  padding: 10px;\n}\n.component-confirm-button-area a {\n  cursor: pointer;\n  margin-right: 5px;\n}\n", ""]);
+
+	// exports
+
+
+/***/ }),
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-api@0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -27960,7 +28339,7 @@
 
 	var _FooterInfo2 = _interopRequireDefault(_FooterInfo);
 
-	var _ArchiveArticleItem = __webpack_require__(233);
+	var _ArchiveArticleItem = __webpack_require__(236);
 
 	var _ArchiveArticleItem2 = _interopRequireDefault(_ArchiveArticleItem);
 
@@ -27977,10 +28356,9 @@
 	//ArchivePage.js 文章归档页
 
 	__webpack_require__(222);
-	__webpack_require__(234);
+	__webpack_require__(237);
 
 	var HomeStore = __webpack_require__(224);
-	console.log('HomeStore archive', HomeStore);
 
 	var ArchivePage = function (_Component) {
 	    _inherits(ArchivePage, _Component);
@@ -28118,7 +28496,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "ArchivePage.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 233 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-api@0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -28139,7 +28517,7 @@
 
 	var _reactRouterDom = __webpack_require__(160);
 
-	var _tap = __webpack_require__(219);
+	var _tap = __webpack_require__(221);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28227,13 +28605,13 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "ArchiveArticleItem.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 234 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(235);
+	var content = __webpack_require__(238);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(213)(content, {});
@@ -28253,7 +28631,7 @@
 	}
 
 /***/ }),
-/* 235 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(211)();
@@ -28261,13 +28639,13 @@
 
 
 	// module
-	exports.push([module.id, ".archive-wrapper .article-tags {\n  padding: 10px 20px;\n  border-left: 5px solid #ccc;\n  background: #fafafa;\n}\n.archive-wrapper .article-tags .archive-icon {\n  width: 90%;\n  color: #2ca6cb;\n  font-size: 16px;\n  margin-left: 10px;\n  margin-bottom: 10px;\n}\n.archive-wrapper .article-tags .tag-title {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-wrap: wrap;\n  flex-wrap: wrap;\n}\n.archive-wrapper .article-tags .tag-title .tag-item {\n  min-width: 1.36rem;\n  font-size: 14px;\n  padding: 3px 6px;\n  border-radius: 20px;\n  border: 1px solid #817c7c;\n  margin: 0 10px 10px 10px;\n  text-align: center;\n}\n.archive-wrapper .article-tags .tag-title .has-click {\n  border: 1px solid #2ca6cb;\n}\n.archive-wrapper .article-list {\n  margin: 16px 0;\n}\n.archive-wrapper .article-li {\n  background: #fafafa;\n  margin-bottom: 2px;\n}\n.archive-wrapper .article-li .article-main {\n  display: block;\n  border-left: 5px solid #ccc;\n  padding: 10px;\n}\n.archive-wrapper .article-li .article-main .time {\n  color: #817c7c;\n  font-size: 14px;\n}\n.archive-wrapper .article-li .article-main .article-title {\n  color: #2ca6cb;\n  line-height: 1.5;\n  font-size: 16px;\n}\n.archive-wrapper .article-li .post-info {\n  padding: 0 4% 10px 4%;\n  font-size: 15px;\n  text-align: right;\n}\n.archive-wrapper .article-li .post-info > span {\n  margin: 0 10px;\n}\n", ""]);
+	exports.push([module.id, ".archive-wrapper .article-tags {\n  padding: 10px 20px;\n  border-left: 5px solid #ccc;\n  background: #fff;\n}\n.archive-wrapper .article-tags .archive-icon {\n  width: 90%;\n  color: #2ca6cb;\n  font-size: 16px;\n  margin-left: 10px;\n  margin-bottom: 10px;\n}\n.archive-wrapper .article-tags .tag-title {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-wrap: wrap;\n  flex-wrap: wrap;\n}\n.archive-wrapper .article-tags .tag-title .tag-item {\n  min-width: 1.36rem;\n  font-size: 14px;\n  padding: 3px 6px;\n  border-radius: 20px;\n  border: 1px solid #817c7c;\n  margin: 0 10px 10px 10px;\n  text-align: center;\n}\n.archive-wrapper .article-tags .tag-title .has-click {\n  border: 1px solid #2ca6cb;\n}\n.archive-wrapper .article-list {\n  margin: 16px 0;\n}\n.archive-wrapper .article-li {\n  background: #fff;\n  margin-bottom: 2px;\n}\n.archive-wrapper .article-li .article-main {\n  display: block;\n  border-left: 5px solid #ccc;\n  padding: 10px;\n}\n.archive-wrapper .article-li .article-main .time {\n  color: #817c7c;\n  font-size: 14px;\n}\n.archive-wrapper .article-li .article-main .article-title {\n  color: #2ca6cb;\n  line-height: 1.5;\n  font-size: 16px;\n}\n.archive-wrapper .article-li .post-info {\n  padding: 0 4% 10px 4%;\n  font-size: 15px;\n  text-align: right;\n}\n.archive-wrapper .article-li .post-info > span {\n  margin: 0 10px;\n}\n", ""]);
 
 	// exports
 
 
 /***/ }),
-/* 236 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-api@0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -28282,7 +28660,7 @@
 
 	__webpack_require__(222);
 
-	__webpack_require__(237);
+	__webpack_require__(240);
 
 	var _react = __webpack_require__(2);
 
@@ -28294,13 +28672,17 @@
 
 	var _HeaderNav2 = _interopRequireDefault(_HeaderNav);
 
-	var _SwitchTab = __webpack_require__(239);
+	var _SwitchTab = __webpack_require__(242);
 
 	var _SwitchTab2 = _interopRequireDefault(_SwitchTab);
 
-	var _ManageArcItem = __webpack_require__(242);
+	var _ManageArcItem = __webpack_require__(245);
 
 	var _ManageArcItem2 = _interopRequireDefault(_ManageArcItem);
+
+	var _AlertDialog = __webpack_require__(232);
+
+	var _AlertDialog2 = _interopRequireDefault(_AlertDialog);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28311,7 +28693,6 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //ManagePage.js 文章管理页
 
 	var HomeStore = __webpack_require__(224);
-	console.log('HomeStore manage', HomeStore);
 
 	var ManagePage = function (_React$Component) {
 	    _inherits(ManagePage, _React$Component);
@@ -28350,6 +28731,22 @@
 	            });
 	        };
 
+	        _this.afterGetDelArticle = function (data) {
+	            if (data.ok == 1) {
+	                _this.setState({
+	                    delSuccess: true,
+	                    showDialog: true,
+	                    dialogMsg: '删除文章成功'
+	                });
+	            } else {
+	                _this.setState({
+	                    delSuccess: false,
+	                    showDialog: true,
+	                    dialogMsg: '删除文章失败'
+	                });
+	            }
+	        };
+
 	        _this.jumpToEditArc = function (tag) {
 	            var url = void 0;
 	            if (tag == 'new') {
@@ -28376,50 +28773,55 @@
 
 	        _this.setPersonInfo = function () {
 	            var me = _this;
-	            var userData = me.state.userInfo || {};
 	            var contentDom = [{
 	                type: 'Input',
+	                key: 'user_name',
 	                name: '昵称',
-	                dafaultValue: userData.user_name || '请输入昵称',
+	                dafaultValue: '请输入昵称',
 	                required: true,
-	                callback: me.nameHandler
+	                callback: me.personInfoChange
 	            }, {
 	                type: 'Input',
 	                name: '密码',
-	                dafaultValue: userData.password || '请输入密码',
+	                key: 'password',
+	                dafaultValue: '请输入密码',
 	                required: true,
-	                callback: me.passwordHandler
+	                callback: me.personInfoChange
 	            }, {
 	                type: 'Input',
 	                name: '邮箱',
-	                dafaultValue: userData.email || '请输入邮箱',
+	                key: 'email',
+	                dafaultValue: '请输入邮箱',
 	                required: false,
-	                callback: me.emailHandler
-
+	                callback: me.personInfoChange
 	            }, {
 	                type: 'Input',
 	                name: '地址',
-	                dafaultValue: userData.location || '请输入地址',
+	                key: 'location',
+	                dafaultValue: '请输入地址',
 	                required: false,
-	                callback: me.locationHandler
+	                callback: me.personInfoChange
 	            }, {
 	                type: 'Input',
 	                name: '头像',
-	                dafaultValue: userData.avatar_url || '请输入有效的头像地址',
+	                key: 'avatar_url',
+	                dafaultValue: '请输入有效的头像地址',
 	                required: true,
-	                callback: me.avatarPicHandler
+	                callback: me.personInfoChange
 	            }, {
 	                type: 'Input',
 	                name: '个性签名',
-	                dafaultValue: userData.blog_motto || '请输入个性签名',
+	                key: 'blog_motto',
+	                dafaultValue: '请输入个性签名',
 	                required: true,
-	                callback: me.motoHandler
+	                callback: me.personInfoChange
 	            }, {
 	                type: 'Input',
 	                name: '友情链接',
-	                dafaultValue: userData.blog_motto || '请输入友情链接',
+	                key: 'github_link',
+	                dafaultValue: '请输入友情链接',
 	                required: true,
-	                callback: me.linkHandler
+	                callback: me.personInfoChange
 	            }];
 	            return contentDom;
 	        };
@@ -28444,7 +28846,43 @@
 	            }
 	        };
 
+	        _this.delArcHandler = function (params) {
+	            HomeStore.delArticle({
+	                'arc_id': params.arc_id
+	            });
+	            _this.setState({
+	                delArcIndex: params.arc_index
+	            });
+	        };
+
+	        _this.closeDialog = function () {
+	            var arcList = _this.state.indexArc;
+	            var nIndex = _this.state.delArcIndex;
+	            _this.setState({
+	                showDialog: false
+	            });
+	            if (_this.state.delSuccess) {
+	                //前端页面删除一条数据
+	                arcList.splice(parseInt(nIndex), 1);
+	                _this.setState({
+	                    indexArc: arcList
+	                });
+	            }
+	        };
+
+	        _this.personInfoChange = function (e) {
+	            var cur = e.currentTarget;
+	            var curUserInfo = _this.state.userInfo;
+
+	            curUserInfo[cur.name] = cur.value;
+	            console.log('===curUserInfo', curUserInfo);
+	            _this.setState({
+	                userInfo: curUserInfo
+	            });
+	        };
+
 	        _this.getArticleCon = function () {
+	            var me = _this;
 	            var arcData = _this.state.indexArc || [];
 
 	            return _react2.default.createElement(
@@ -28454,7 +28892,7 @@
 	                    'div',
 	                    { className: 'arc-list' },
 	                    arcData.map(function (item, index) {
-	                        return _react2.default.createElement(_ManageArcItem2.default, { key: "managearc" + index, data: item });
+	                        return _react2.default.createElement(_ManageArcItem2.default, { key: "managearc" + index, nIndex: index, data: item, delArticle: me.delArcHandler.bind(me) });
 	                    })
 	                ),
 	                _react2.default.createElement('div', { className: 'pagination' })
@@ -28463,7 +28901,7 @@
 
 	        _this.getPersonCon = function () {
 	            var personInfo = _this.setPersonInfo();
-	            console.log('personInfo', personInfo);
+	            var userData = _this.state.userInfo;
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'personInfo-con' },
@@ -28484,7 +28922,7 @@
 	                                null,
 	                                item.name
 	                            ),
-	                            _react2.default.createElement('input', { type: 'text', name: item.name, placeholder: item.dafaultValue })
+	                            _react2.default.createElement('input', { type: 'text', name: item.key, value: userData[item.key], onChange: callback })
 	                        );
 	                    }
 	                }),
@@ -28530,10 +28968,14 @@
 	            userInfo: {},
 	            indexArc: [],
 	            clickIndex: 0,
-	            showConClass: 'article-con'
+	            delArcIndex: 0,
+	            showConClass: 'article-con',
+	            dialogMsg: '',
+	            showDialog: false,
+	            delSuccess: false
 	        };
 	        HomeStore.dispose();
-	        HomeStore.listen(['userInfo', 'indexArc'], _this);
+	        HomeStore.listen(['userInfo', 'indexArc', 'delArticle'], _this);
 	        return _this;
 	    }
 
@@ -28547,6 +28989,14 @@
 	            HomeStore.getIndexArcData();
 	            me.initDom();
 	        }
+	    }, {
+	        key: 'componentWillUpdate',
+	        value: function componentWillUpdate() {
+	            this.state.delSuccess = false;
+	        }
+
+	        //删除文章
+
 
 	        //文章管理内容
 
@@ -28576,6 +29026,7 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'container' },
+	                    _react2.default.createElement(_AlertDialog2.default, { dialogShow: me.state.showDialog, content: me.state.dialogMsg, close: this.closeDialog }),
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'main' },
@@ -28610,13 +29061,13 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "ManagePage.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 237 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(238);
+	var content = __webpack_require__(241);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(213)(content, {});
@@ -28636,7 +29087,7 @@
 	}
 
 /***/ }),
-/* 238 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(211)();
@@ -28644,13 +29095,13 @@
 
 
 	// module
-	exports.push([module.id, ".manage-wrapper .article-con .arc-list .article-li {\n  background: #fff;\n  margin-bottom: 10px;\n}\n.manage-wrapper .article-con .arc-list .article-li .article-main {\n  display: block;\n  padding: 20px 10px 10px 10px;\n  border-bottom: 1px dotted #ccc;\n}\n.manage-wrapper .article-con .arc-list .article-li .article-main .time {\n  color: #817c7c;\n  font-size: 14px;\n}\n.manage-wrapper .article-con .arc-list .article-li .article-main .article-title {\n  color: #2ca6cb;\n  line-height: 1.5;\n  font-size: 16px;\n}\n.manage-wrapper .article-con .arc-list .article-li .article-act {\n  padding: 10px 4%;\n  font-size: 15px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n}\n.manage-wrapper .article-con .arc-list .article-li .article-act > span {\n  padding: 0 10px;\n}\n.manage-wrapper .personInfo-con {\n  background: #fff;\n  padding: 0.6rem 15px;\n  border-radius: 6px;\n}\n.manage-wrapper .personInfo-con .input-wrapper {\n  height: 1rem;\n  line-height: 1rem;\n  background: #fff;\n  color: #3e3e3e;\n  font-size: 16px;\n  border-bottom: 1px solid #f1f1f1;\n}\n.manage-wrapper .personInfo-con .input-wrapper .required-tag {\n  color: #3c9;\n  width: 20px;\n  display: inline-block;\n  vertical-align: middle;\n}\n.manage-wrapper .personInfo-con .input-wrapper input {\n  margin-left: 0.5rem;\n  border: none;\n  color: #3e3e3e;\n  font-size: 14px;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n.manage-wrapper .personInfo-con .save {\n  border-radius: 0.6rem;\n  background-color: #3c9;\n  width: 70%;\n  margin: 20px auto;\n  text-align: center;\n  color: #fff;\n  line-height: 2.8;\n  margin: 35px auto 20px;\n}\n", ""]);
+	exports.push([module.id, ".manage-wrapper .article-con .arc-list .article-li {\n  background: #fff;\n  margin-bottom: 10px;\n}\n.manage-wrapper .article-con .arc-list .article-li .article-main {\n  display: block;\n  padding: 20px 10px 10px 10px;\n  border-bottom: 1px dotted #ccc;\n}\n.manage-wrapper .article-con .arc-list .article-li .article-main .time {\n  color: #817c7c;\n  font-size: 14px;\n}\n.manage-wrapper .article-con .arc-list .article-li .article-main .article-title {\n  color: #2ca6cb;\n  line-height: 1.5;\n  font-size: 16px;\n}\n.manage-wrapper .article-con .arc-list .article-li .article-act {\n  padding: 10px 4%;\n  font-size: 15px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n}\n.manage-wrapper .article-con .arc-list .article-li .article-act > span {\n  padding: 0 10px;\n}\n.manage-wrapper .personInfo-con {\n  background: #fff;\n  padding: 0.6rem 15px;\n  border-radius: 6px;\n}\n.manage-wrapper .personInfo-con .input-wrapper {\n  height: 1rem;\n  line-height: 1rem;\n  background: #fff;\n  color: #3e3e3e;\n  font-size: 16px;\n  border-bottom: 1px solid #f1f1f1;\n}\n.manage-wrapper .personInfo-con .input-wrapper .required-tag {\n  color: #3c9;\n  width: 20px;\n  display: inline-block;\n  vertical-align: middle;\n}\n.manage-wrapper .personInfo-con .input-wrapper input {\n  width: 75%;\n  margin-left: 0.5rem;\n  border: none;\n  color: #3e3e3e;\n  font-size: 14px;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n.manage-wrapper .personInfo-con .save {\n  border-radius: 0.6rem;\n  background-color: #3c9;\n  width: 70%;\n  margin: 20px auto;\n  text-align: center;\n  color: #fff;\n  line-height: 2.8;\n  margin: 35px auto 20px;\n}\n", ""]);
 
 	// exports
 
 
 /***/ }),
-/* 239 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-api@0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -28663,7 +29114,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	__webpack_require__(240);
+	__webpack_require__(243);
 
 	var _react = __webpack_require__(2);
 
@@ -28821,13 +29272,13 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "SwitchTab.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 240 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(241);
+	var content = __webpack_require__(244);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(213)(content, {});
@@ -28847,7 +29298,7 @@
 	}
 
 /***/ }),
-/* 241 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(211)();
@@ -28861,7 +29312,7 @@
 
 
 /***/ }),
-/* 242 */
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-api@0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -28882,7 +29333,7 @@
 
 	var _reactRouterDom = __webpack_require__(160);
 
-	var _tap = __webpack_require__(219);
+	var _tap = __webpack_require__(221);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28913,12 +29364,22 @@
 	            var link = cur.getAttribute('data-href');
 	            var url = location.href.replace(location.hash, '') + '#' + link;
 	            location.href = url;
+	        }, _this.delHandler = function (e) {
+	            var params = {};
+	            var cur = e.currentTarget;
+	            var nIndex = cur.getAttribute('data-index');
+	            var arcId = cur.getAttribute('data-id');
+	            params = {
+	                'arc_index': nIndex,
+	                'arc_id': arcId
+	            };
+	            _this.props.delArticle && _this.props.delArticle(params);
 	        }, _temp), _possibleConstructorReturn(_this, _ret);
 	    }
 
 	    _createClass(ArchiveArticleItem, [{
-	        key: 'handlerTap',
-	        value: function handlerTap(e) {
+	        key: 'jumpToDetailPage',
+	        value: function jumpToDetailPage(e) {
 	            var cur = e.currentTarget;
 	            var link = cur.getAttribute('data-href');
 	            var url = location.href.replace(location.hash, '') + '#' + link;
@@ -28928,13 +29389,15 @@
 	        key: 'render',
 	        value: function render() {
 	            var articleData = this.props.data;
-	            var link = '/edit/' + articleData._id;
+	            var nIndex = this.props.nIndex;
+	            var editLink = '/edit/' + articleData._id;
+	            var detailLink = '/detail/' + articleData._id;
 	            return _react2.default.createElement(
 	                'article',
 	                { className: 'article-li' },
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'article-main', 'data-href': link, onClick: (0, _tap.wrapperClick)(this.handlerTap.bind(this)) },
+	                    { className: 'article-main', 'data-href': detailLink, onClick: (0, _tap.wrapperClick)(this.jumpToDetailPage.bind(this)) },
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'time' },
@@ -28956,12 +29419,12 @@
 	                    ),
 	                    _react2.default.createElement(
 	                        'sapn',
-	                        { 'data-href': link, onClick: this.jumpToEditPage },
+	                        { 'data-href': editLink, onClick: this.jumpToEditPage },
 	                        '\u7F16\u8F91'
 	                    ),
 	                    _react2.default.createElement(
 	                        'span',
-	                        null,
+	                        { 'data-index': nIndex, 'data-id': articleData._id, onClick: this.delHandler },
 	                        '\u5220\u9664'
 	                    )
 	                )
@@ -28977,7 +29440,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "ManageArcItem.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 243 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-api@0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -29019,7 +29482,7 @@
 	//ArchivePage.js 文章归档页
 
 	__webpack_require__(222);
-	__webpack_require__(244);
+	__webpack_require__(247);
 
 	var HomeStore = __webpack_require__(224);
 
@@ -29166,13 +29629,13 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "DetailArtPage.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 244 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(245);
+	var content = __webpack_require__(248);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(213)(content, {});
@@ -29192,7 +29655,7 @@
 	}
 
 /***/ }),
-/* 245 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(211)();
@@ -29206,7 +29669,7 @@
 
 
 /***/ }),
-/* 246 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-api@0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
