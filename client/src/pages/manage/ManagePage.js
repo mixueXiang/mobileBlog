@@ -254,7 +254,7 @@ export default class ManagePage extends React.Component {
     							return (<div className="input-wrapper">
     										<sapn className="required-tag">{requiredTag}</sapn>
     										<span>{item.name}</span>
-    										<input type="text" name={item.key} value={userData[item.key]} onChange={callback}/>
+    										<input type="text" name={item.key} value={userData[item.key]} placeholder={item.dafaultValue} onChange={callback}/>
     								   </div>)
     						}
     					})

@@ -89,6 +89,7 @@ export default class EditPage extends React.Component {
 
     afterGetEditArticle = (data) => {
         const me = this;
+        let link = '/manage';
         console.log('=====editRrticle',data);
         if(!data) {
             console.log('editRrticleFailed',data);
@@ -102,6 +103,7 @@ export default class EditPage extends React.Component {
                 showDialog: true,
                 dialogMsg: '修改文章成功'
             });
+            location.href = location.href.replace(location.hash, '') + '#' + link;
         }       
     }
 

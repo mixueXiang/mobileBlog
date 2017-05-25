@@ -27901,6 +27901,7 @@
 
 	        _this.afterGetEditArticle = function (data) {
 	            var me = _this;
+	            var link = '/manage';
 	            console.log('=====editRrticle', data);
 	            if (!data) {
 	                console.log('editRrticleFailed', data);
@@ -27914,6 +27915,7 @@
 	                    showDialog: true,
 	                    dialogMsg: '修改文章成功'
 	                });
+	                location.href = location.href.replace(location.hash, '') + '#' + link;
 	            }
 	        };
 
@@ -28922,7 +28924,7 @@
 	                                null,
 	                                item.name
 	                            ),
-	                            _react2.default.createElement('input', { type: 'text', name: item.key, value: userData[item.key], onChange: callback })
+	                            _react2.default.createElement('input', { type: 'text', name: item.key, value: userData[item.key], placeholder: item.dafaultValue, onChange: callback })
 	                        );
 	                    }
 	                }),
@@ -29095,7 +29097,7 @@
 
 
 	// module
-	exports.push([module.id, ".manage-wrapper .article-con .arc-list .article-li {\n  background: #fff;\n  margin-bottom: 10px;\n}\n.manage-wrapper .article-con .arc-list .article-li .article-main {\n  display: block;\n  padding: 20px 10px 10px 10px;\n  border-bottom: 1px dotted #ccc;\n}\n.manage-wrapper .article-con .arc-list .article-li .article-main .time {\n  color: #817c7c;\n  font-size: 14px;\n}\n.manage-wrapper .article-con .arc-list .article-li .article-main .article-title {\n  color: #2ca6cb;\n  line-height: 1.5;\n  font-size: 16px;\n}\n.manage-wrapper .article-con .arc-list .article-li .article-act {\n  padding: 10px 4%;\n  font-size: 15px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n}\n.manage-wrapper .article-con .arc-list .article-li .article-act > span {\n  padding: 0 10px;\n}\n.manage-wrapper .personInfo-con {\n  background: #fff;\n  padding: 0.6rem 15px;\n  border-radius: 6px;\n}\n.manage-wrapper .personInfo-con .input-wrapper {\n  height: 1rem;\n  line-height: 1rem;\n  background: #fff;\n  color: #3e3e3e;\n  font-size: 16px;\n  border-bottom: 1px solid #f1f1f1;\n}\n.manage-wrapper .personInfo-con .input-wrapper .required-tag {\n  color: #3c9;\n  width: 20px;\n  display: inline-block;\n  vertical-align: middle;\n}\n.manage-wrapper .personInfo-con .input-wrapper input {\n  width: 75%;\n  margin-left: 0.5rem;\n  border: none;\n  color: #3e3e3e;\n  font-size: 14px;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n.manage-wrapper .personInfo-con .save {\n  border-radius: 0.6rem;\n  background-color: #3c9;\n  width: 70%;\n  margin: 20px auto;\n  text-align: center;\n  color: #fff;\n  line-height: 2.8;\n  margin: 35px auto 20px;\n}\n", ""]);
+	exports.push([module.id, ".manage-wrapper .article-con .arc-list .article-li {\n  background: #fff;\n  margin-bottom: 10px;\n}\n.manage-wrapper .article-con .arc-list .article-li .article-main {\n  display: block;\n  padding: 20px 10px 10px 10px;\n  border-bottom: 1px dotted #ccc;\n}\n.manage-wrapper .article-con .arc-list .article-li .article-main .time {\n  color: #817c7c;\n  font-size: 14px;\n}\n.manage-wrapper .article-con .arc-list .article-li .article-main .article-title {\n  color: #2ca6cb;\n  line-height: 1.5;\n  font-size: 16px;\n}\n.manage-wrapper .article-con .arc-list .article-li .article-act {\n  padding: 10px 4%;\n  font-size: 15px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n}\n.manage-wrapper .article-con .arc-list .article-li .article-act > span {\n  padding: 0 10px;\n}\n.manage-wrapper .personInfo-con {\n  background: #fff;\n  padding: 0.6rem 15px;\n  border-radius: 6px;\n}\n.manage-wrapper .personInfo-con .input-wrapper {\n  height: 1rem;\n  line-height: 1rem;\n  background: #fff;\n  color: #3e3e3e;\n  font-size: 16px;\n  border-bottom: 1px solid #f1f1f1;\n}\n.manage-wrapper .personInfo-con .input-wrapper .required-tag {\n  color: #3c9;\n  width: 20px;\n  display: inline-block;\n  vertical-align: middle;\n}\n.manage-wrapper .personInfo-con .input-wrapper input {\n  width: 64%;\n  margin-left: 0.5rem;\n  border: none;\n  color: #3e3e3e;\n  font-size: 14px;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n.manage-wrapper .personInfo-con .save {\n  border-radius: 0.6rem;\n  background-color: #3c9;\n  width: 70%;\n  margin: 20px auto;\n  text-align: center;\n  color: #fff;\n  line-height: 2.8;\n  margin: 35px auto 20px;\n}\n", ""]);
 
 	// exports
 
