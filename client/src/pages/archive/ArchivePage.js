@@ -18,10 +18,11 @@ export default class ArchivePage extends Component {
         this.state = {
             userInfo: {},
             indexArc: [],
-            tagsArr: [],
+            tagInfo: [],
+            tagArc: []
         };
         HomeStore.dispose();
-        HomeStore.listen(['userInfo','indexArc'], this);
+        HomeStore.listen(['userInfo','indexArc','tagArc'], this);
     }
 
     componentDidMount() {
@@ -31,6 +32,12 @@ export default class ArchivePage extends Component {
         //获取文章列表数据
         HomeStore.getIndexArcData();
     }
+
+   /* shouldComponentUpdate(nextProps,nextstate) {
+        if(this.state.tagInfo != nextstate.tagInfo ){
+            return true;
+        }
+    }*/
 
     afterGetUserInfo = (data) => {
         const me = this;
@@ -43,6 +50,16 @@ export default class ArchivePage extends Component {
         });
     }
 
+    afterGetTagArc = (data)=> {
+        const me = this;
+        console.log('IndexArcData=======',data);
+        if(!data) {
+            return;
+        }
+        me.setState({
+           tagArc: data,
+        });
+    }
     afterGetIndexArc = (data) => {
         const me = this;
         console.log('IndexArcData=======',data);
@@ -51,8 +68,31 @@ export default class ArchivePage extends Component {
         }
         me.setState({
             indexArc: data,
+        }, () => {
+            this.getTagData();
+        });
+
+    }
+
+    getTagData = () => { //标签去重
+        let data = this.state.indexArc;
+        console.log('getTagData', data);
+        let tempTagArr = []; 
+        let hash = {};
+        let tag = '';
+        for (let i = 0; i < data.length; i++) {
+            tag = data[i].archive_type;
+            if (!hash[tag]) {
+                hash[tag] = true;
+                tempTagArr.push(tag);
+            }
+        }
+        this.setState({
+            tagInfo: tempTagArr
         });
     }
+
+
 
     getSiblings = (ele) => {
         let siblings = [];
@@ -67,7 +107,7 @@ export default class ArchivePage extends Component {
  
     tagHandler = (e) => {
         let cur = e.currentTarget;
-        let tagId = cur.getAttribute('data-id');
+        let tagId = cur.getAttribute('data-tag');
         let allEle = cur.parentNode.children;
         for (let i = 0; i < allEle.length; i++) {
             allEle[i].classList.remove('has-click');
@@ -75,17 +115,21 @@ export default class ArchivePage extends Component {
         cur.classList.add('has-click');
         console.log('clickTag'+tagId,cur);
         //点击分类获取数据，填充到indexArc
+        HomeStore.getArcByTag({
+            tag: tagId
+        });
     }
 
     render() {
         //let arcData = indexArcData.result || [];
 		//let userData = indexUserData.result || {};
-        console.log('tagsData',tagsData);
-        let tagsArr = tagsData.result || [];
+        console.log('tempTagArr from database', this.state.tagInfo);
 
         const me = this;
         let userData = me.state.userInfo || {};
-        let arcData = me.state.indexArc || [];
+        let arcData = (me.state.tagArc.length == 0) ? me.state.indexArc : me.state.tagArc;
+        let tagsData = me.state.tagInfo || [];
+
         return (
             <div className="archive-wrapper">
                 <HeaderNav data={userData}></HeaderNav>
@@ -95,10 +139,10 @@ export default class ArchivePage extends Component {
                             <div className="archive-icon">归档</div>
                             <div className="tag-title">
                                 {
-                                    tagsArr.map(function(item, i){
+                                    tagsData.map(function(item, i){
                                         return (
-                                            <div className="tag-item" data-key={'tag-' + i} data-id={item.tag_id} 
-                                                onClick={me.tagHandler.bind(me)}>{item.tag_name}
+                                            <div className="tag-item" data-key={'tag-' + i} data-tag={item}
+                                                onClick={me.tagHandler.bind(me)}>{item}
                                             </div> 
                                         )
                                     })

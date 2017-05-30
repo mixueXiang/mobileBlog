@@ -6,16 +6,44 @@ define('HomeStore', function() {
     var Utils = require('../utils/Utils.js');
 
     var hostName = 'http://lx.mobileblog.xmixue.com:8008';
+    var LOGIN_PATH = hostName + '/login';
+    var REGISTER_PATH = hostName + '/register';
     var USER_INFO = hostName + '/users';
     var INDEX_ARC_LIST = hostName + '/indexarc';
+    var ARC_BYTAG_LIST = hostName + '/tagarc';
     var ARC_DETAIL = hostName + '/detail';
     var ADD_READING = hostName + '/addread';
     var ADD_ARTICLE = hostName + '/addarticle';
     var EDIT_ARTICLE = hostName + '/editarticle';
     var DEL_ARTICLE = hostName + '/delarticle';
+    var GET_COMMENT = hostName + '/getcomment';
+    var POST_COMMENT = hostName + '/postcomment';
+    var DO_UPVOTE = hostName + '/doupvote';
 
     var HomeStore = StoreBase.createClass({
     	actions: {
+            //登陆
+            doLogin : function(params) {
+                var me = this;
+                Utils.getAjaxData(LOGIN_PATH, params, function (data) {
+                    var data = data;
+                    me.done('doLogin', data, true);
+                }, function (data) {
+                    me.error('doLogin',data);
+                });
+            },
+
+            //注册
+            doRegister: function(params) {
+                var me = this;
+                Utils.getAjaxData(REGISTER_PATH, params, function (data) {
+                    var data = data;
+                    me.done('doRegister', data, true);
+                }, function (data) {
+                    me.error('doRegister',data);
+                });
+            },
+
             //获取用户信息
     		getUserInfoData: function() {
     			var me = this;
@@ -37,6 +65,27 @@ define('HomeStore', function() {
     			    console.log('errordata',data);
     			});
     		},
+            getArcByTag: function(params) {
+                var me = this;
+                Utils.getAjaxData(ARC_BYTAG_LIST,params, function (data) {
+                    var data = data;
+                    me.done('tagArc', data, true);
+                }, function (data) {
+                    me.error('tagArc',data);
+                    console.log('errordata',data);
+                });
+            },
+            //获取评论列表
+            getCommentData: function(params) {
+                var me = this;
+                Utils.getAjaxData(GET_COMMENT,params, function (data) {
+                    var data = data;
+                    me.done('commentList', data, true);
+                }, function (data) {
+                    me.error('commentList',data);
+                    console.log('errordata',data);
+                });
+            },
             //获取文章详情
             getArcDetail: function(params) {
                 var me = this;
@@ -88,6 +137,28 @@ define('HomeStore', function() {
                     me.done('delArticle', data, true);
                 }, function (data) {
                     me.error('delArticle',data);
+                });
+            },
+
+            //发表评论
+            postComment: function(params) {
+                var me = this;
+                Utils.getAjaxData(POST_COMMENT, params, function (data) {
+                    var data = data;
+                    me.done('postComment', data, true);
+                }, function (data) {
+                    me.error('postComment',data);
+                });
+            },
+
+            //点赞和取消点赞
+            doUpVote: function(params) {
+                var me = this;
+                Utils.getAjaxData(DO_UPVOTE, params, function (data) {
+                    var data = data;
+                    me.done('upvote', data, true);
+                }, function (data) {
+                    me.error('upvote',data);
                 });
             }
     	},

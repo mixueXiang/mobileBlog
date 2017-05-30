@@ -39,6 +39,22 @@ export let indexArcData = {
 	}]	
 };
 
+//评论列表数据
+export let commentData = [
+	{
+		comment: '这篇文章真棒！',
+		commentor: '米雪321',
+		timestamp: '17:23',
+		avator: "https://avatars1.githubusercontent.com/u/12773242?v=3",
+	},
+	{
+		comment: '这篇文章真棒！',
+		commentor: '米雪321',
+		timestamp: '17:21',
+		avator:  "https://avatars1.githubusercontent.com/u/12773242?v=3",
+	}
+];
+
 export let tagsData = {
 	error_no: 0,
 	error_msg: '',

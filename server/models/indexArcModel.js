@@ -2,7 +2,7 @@ var schemas = require('../schemas/indexArcSchema');
 var mongoose = require('mongoose');
 
 var indexArcModel = mongoose.model('indexarc', schemas.indexArcSchema);
-var indexArc = new indexArcModel({ 
+/*var indexArc = new indexArcModel({ 
 	article_id: '1',
 	timestamp: new Date(),
 	title: '使用xx.net科学上网',
@@ -22,6 +22,6 @@ var indexArc = new indexArcModel({
 indexArc.save(function(err, doc){
   if(err)console.log(err);
   else console.log(doc.title + ' saved');
-}); 
+}); */
 
 exports.indexArcModel = indexArcModel;

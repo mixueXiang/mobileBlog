@@ -47,12 +47,20 @@
             test: /\.less$/,
             loader: 'style-loader!css-loader!less-loader!autoprefixer-loader',
           }, 
+
           {
+            test: /\.svg/,
+            loader: 'svg-url-loader'
+          }
+          /*{
             test: /\.(png|jpg|gif|svg)$/,
             //图片文件使用 url-loader 来处理，小于8kb的直接转为base64
             loader: "url-loader?limit=2048&name=images/[hash:8].[name].[ext]",
-          }
+          }*/
         ]
+      },
+      url: {
+         dataUrlLimit: 1024
       }
   };
 

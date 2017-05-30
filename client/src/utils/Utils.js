@@ -94,6 +94,25 @@ define('Utils', function () {
 			this.getParam(name, location.href);
 		},
 
+		//获取用户登录信息
+	    getLoginInfo:function() {
+	        let storage = window.localStorage || {};
+	        if (storage && storage.login) {
+	            let loginData = JSON.parse(storage.login);
+	            return loginData;
+	        }
+	    },
+
+	    //时间毫秒数格式化
+	    getFormatTime: function(timestamp) {
+	    	let time;
+	    	/*if (timestamp.length < 13) {
+	    		time = new Date(parseInt(timestamp * 1000));
+	    	} */
+	    	time = new Date(parseInt(timestamp));
+	    	return (time.getFullYear() + "-" + (time.getMonth() + 1) + "-" + time.getDate() + " " 
+	    	+ time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds() );
+	    },
 
 		addStat: function ({src, act}) {
 			NABridge.openInUrl('addStat', {

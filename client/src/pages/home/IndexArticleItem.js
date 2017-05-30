@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import {Link} from 'react-router-dom';
 import {wrapperClick} from '../../utils/tap';
+let Utils = require('../../utils/Utils');
 
 export default class IndexArticleItem extends React.Component {
    
@@ -19,14 +20,15 @@ export default class IndexArticleItem extends React.Component {
     	let userName = this.props.userName || '';
         let articleData = this.props.data;
         let link = '/detail/' + articleData._id;
+        let time = Utils.getFormatTime(articleData.timestamp);
         return (
             <div>
             	<article>
-        			<div className="article-title" data-href={link} onClick={wrapperClick(this.handlerTap.bind(this))}>
+        			<div className="article-title" data-href={link} onClick={this.handlerTap.bind(this)}>
                         {articleData.title}
                     </div>
             		<p className="article-author">By <strong>{userName}</strong></p>
-            		<p className="article-time">发表于&nbsp;{articleData.timestamp}</p>
+            		<p className="article-time">发表于&nbsp;{time}</p>
             		<div className="article-content">
             			<p className="article-remark">{articleData.remark}</p>
             			<p className="article-more-link" data-href={link} onClick={wrapperClick(this.handlerTap.bind(this))}>

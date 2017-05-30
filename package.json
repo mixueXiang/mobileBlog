@@ -11,6 +11,7 @@
     "ejs": "^2.5.6",
     "express": "^4.15.2",
     "express-mongoose": "^0.1.0",
+    "express-session": "^1.15.3",
     "less-plugin-functions": "0.0.2",
     "mongoose": "^4.9.7",
     "nodemon": "^1.11.0",
@@ -49,6 +50,7 @@
     "reload": "^1.1.3",
     "rimraf": "^2.4.4",
     "style-loader": "^0.12.4",
+    "svg-url-loader": "^2.0.2",
     "svgo": "^0.6.6",
     "svgo-loader": "^1.1.0",
     "url-loader": "^0.5.6",
@@ -60,7 +62,7 @@
     "webpack-md5-hash": "0.0.4"
   },
   "scripts": {
-    "start": "supervisor -i client app",
+    "start": "nodemon app.js",
     "start22": "nodemon app",
     "build": "webpack",
     "dev": "webpack-dev-server --devtool eval --progress --colors --hot --content-base"

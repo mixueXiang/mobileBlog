@@ -60,11 +60,15 @@
 
 	var _HomePage2 = _interopRequireDefault(_HomePage);
 
-	var _LoginPage = __webpack_require__(226);
+	var _LoginPage = __webpack_require__(225);
 
 	var _LoginPage2 = _interopRequireDefault(_LoginPage);
 
-	var _EditPage = __webpack_require__(229);
+	var _RegisterPage = __webpack_require__(231);
+
+	var _RegisterPage2 = _interopRequireDefault(_RegisterPage);
+
+	var _EditPage = __webpack_require__(232);
 
 	var _EditPage2 = _interopRequireDefault(_EditPage);
 
@@ -80,7 +84,7 @@
 
 	var _DetailArtPage2 = _interopRequireDefault(_DetailArtPage);
 
-	var _PayPage = __webpack_require__(249);
+	var _PayPage = __webpack_require__(251);
 
 	var _PayPage2 = _interopRequireDefault(_PayPage);
 
@@ -99,6 +103,7 @@
 	        _react2.default.createElement(_reactRouterDom.Route, { path: '/manage', component: _ManagePage2.default }),
 	        _react2.default.createElement(_reactRouterDom.Route, { path: '/archive', component: _ArchivePage2.default }),
 	        _react2.default.createElement(_reactRouterDom.Route, { path: '/login', component: _LoginPage2.default }),
+	        _react2.default.createElement(_reactRouterDom.Route, { path: '/register', component: _RegisterPage2.default }),
 	        _react2.default.createElement(_reactRouterDom.Route, { path: '/edit/new', component: _EditPage2.default }),
 	        _react2.default.createElement(_reactRouterDom.Route, { path: '/edit/:id', component: _EditPage2.default }),
 	        _react2.default.createElement(_reactRouterDom.Route, { path: '/detail/:id', component: _DetailArtPage2.default }),
@@ -25171,11 +25176,11 @@
 
 	var _HeaderNav2 = _interopRequireDefault(_HeaderNav);
 
-	var _FooterInfo = __webpack_require__(215);
+	var _FooterInfo = __webpack_require__(214);
 
 	var _FooterInfo2 = _interopRequireDefault(_FooterInfo);
 
-	var _IndexArticleItem = __webpack_require__(218);
+	var _IndexArticleItem = __webpack_require__(217);
 
 	var _IndexArticleItem2 = _interopRequireDefault(_IndexArticleItem);
 
@@ -25189,9 +25194,9 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(222);
+	__webpack_require__(221);
 
-	var HomeStore = __webpack_require__(224);
+	var HomeStore = __webpack_require__(223);
 
 	var HomePage = function (_Component) {
 	    _inherits(HomePage, _Component);
@@ -25316,37 +25321,106 @@
 
 	__webpack_require__(209);
 
-	var Utils = __webpack_require__(214);
+	var Utils = __webpack_require__(213);
 
 	var HeaderNav = function (_React$Component) {
 	    _inherits(HeaderNav, _React$Component);
 
-	    function HeaderNav() {
-	        var _ref;
-
-	        var _temp, _this, _ret;
-
+	    function HeaderNav(props) {
 	        _classCallCheck(this, HeaderNav);
 
-	        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-	            args[_key] = arguments[_key];
-	        }
+	        var _this = _possibleConstructorReturn(this, (HeaderNav.__proto__ || Object.getPrototypeOf(HeaderNav)).call(this, props));
 
-	        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = HeaderNav.__proto__ || Object.getPrototypeOf(HeaderNav)).call.apply(_ref, [this].concat(args))), _this), _this.clickHandler = function (e) {
+	        _this.getLoginInfo = function () {
+	            var loginData = Utils.getLoginInfo() || {};
+	            _this.setState({
+	                loginInfo: loginData
+	            });
+	        };
+
+	        _this.clickHandler = function (e) {
 	            var cur = e.currentTarget;
+	            var link = cur.getAttribute('data-path');
 	            var allEle = cur.parentNode.children;
 	            for (var i = 0; i < allEle.length; i++) {
 	                allEle[i].classList.remove('has-click');
 	            }
 	            cur.classList.add('has-click');
-	        }, _temp), _possibleConstructorReturn(_this, _ret);
+
+	            link && (location.href = location.href.replace(location.hash, '') + '#' + link);
+	        };
+
+	        _this.leaveHandler = function () {
+	            var storage = window.localStorage ? window.localStorage : {};
+	            storage.removeItem('login');
+	            location.href = location.href.replace(location.hash, '') + '#' + '/login';
+	            _this.setState({
+	                loginInfo: {}
+	            });
+	        };
+
+	        _this.getNavDom = function () {
+	            var loginInfo = _this.state.loginInfo;
+	            var loginText = void 0,
+	                loginDom = void 0;
+	            console.log('getNavDom login', loginInfo);
+	            var isShowManage = void 0;
+	            loginText = loginInfo.user_name ? loginInfo.user_name + '/注销' : '登录';
+	            if (loginInfo.user_name) {
+	                loginDom = _react2.default.createElement(
+	                    'li',
+	                    { onClick: _this.leaveHandler },
+	                    loginInfo.user_name,
+	                    '/\u6CE8\u9500'
+	                );
+	            } else {
+	                loginDom = _react2.default.createElement(
+	                    'li',
+	                    { 'data-path': '/login', onClick: _this.clickHandler },
+	                    '\u767B\u9646'
+	                );
+	            }
+	            if (loginInfo.type == 'admin') {
+	                isShowManage = true;
+	            }
+
+	            return _react2.default.createElement(
+	                'ul',
+	                { className: 'nav' },
+	                _react2.default.createElement(
+	                    'li',
+	                    { 'data-path': '/index', onClick: _this.clickHandler },
+	                    '\u9996\u9875'
+	                ),
+	                _react2.default.createElement(
+	                    'li',
+	                    { 'data-path': '/archive', onClick: _this.clickHandler },
+	                    '\u5F52\u6863'
+	                ),
+	                _react2.default.createElement(
+	                    'li',
+	                    { 'data-path': '/manage', onClick: _this.clickHandler, style: { display: isShowManage ? 'block' : 'none' } },
+	                    '\u7BA1\u7406'
+	                ),
+	                loginDom
+	            );
+	        };
+
+	        _this.state = {
+	            loginInfo: {}
+	        };
+	        return _this;
 	    }
 
 	    _createClass(HeaderNav, [{
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            var me = this;
+	            me.getLoginInfo();
 	        }
+
+	        //获取用户登录信息
+
 	    }, {
 	        key: 'render',
 	        value: function render() {
@@ -25354,6 +25428,7 @@
 	            //<h2>{userData.blog_motto}</h2>
 	            var me = this;
 	            var userData = me.props.data || {};
+
 	            return _react2.default.createElement(
 	                'header',
 	                null,
@@ -25378,46 +25453,7 @@
 	                            )
 	                        )
 	                    ),
-	                    _react2.default.createElement(
-	                        'ul',
-	                        { className: 'nav' },
-	                        _react2.default.createElement(
-	                            'li',
-	                            null,
-	                            _react2.default.createElement(
-	                                _reactRouterDom.Link,
-	                                { to: '/index', onClick: this.clickHandler.bind(this) },
-	                                '\u9996\u9875'
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            'li',
-	                            { onClick: this.clickHandler.bind(this) },
-	                            _react2.default.createElement(
-	                                _reactRouterDom.Link,
-	                                { to: '/archive' },
-	                                '\u5F52\u6863'
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            'li',
-	                            { onClick: this.clickHandler.bind(this) },
-	                            _react2.default.createElement(
-	                                _reactRouterDom.Link,
-	                                { to: '/manage' },
-	                                '\u7BA1\u7406'
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            'li',
-	                            { onClick: this.clickHandler.bind(this) },
-	                            _react2.default.createElement(
-	                                _reactRouterDom.Link,
-	                                { to: '/login' },
-	                                '\u767B\u9646'
-	                            )
-	                        )
-	                    )
+	                    me.getNavDom()
 	                )
 	            );
 	        }
@@ -25479,6 +25515,19 @@
 		}]
 	};
 
+	//评论列表数据
+	var commentData = exports.commentData = [{
+		comment: '这篇文章真棒！',
+		commentor: '米雪321',
+		timestamp: '17:23',
+		avator: "https://avatars1.githubusercontent.com/u/12773242?v=3"
+	}, {
+		comment: '这篇文章真棒！',
+		commentor: '米雪321',
+		timestamp: '17:21',
+		avator: "https://avatars1.githubusercontent.com/u/12773242?v=3"
+	}];
+
 	var tagsData = exports.tagsData = {
 		error_no: 0,
 		error_msg: '',
@@ -25509,7 +25558,7 @@
 	var content = __webpack_require__(210);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(213)(content, {});
+	var update = __webpack_require__(212)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -25534,7 +25583,7 @@
 
 
 	// module
-	exports.push([module.id, "header {\n  background: #3c9;\n  padding: 16px 0;\n  height: 1.7rem;\n  box-shadow: 2px 4px 5px rgba(3, 3, 3, 0.2);\n}\nheader .user-info {\n  width: 95%;\n  height: 100%;\n  margin: 0 auto;\n  position: relative;\n}\nheader .user-info .img-logo {\n  float: left;\n  width: 1.2rem;\n  height: 1.2rem;\n  background: url(" + __webpack_require__(212) + ") no-repeat;\n  background-size: 100% 100%;\n  border-radius: 100%;\n  overflow: hidden;\n}\nheader .user-info .text-logo {\n  float: left;\n  width: 75%;\n  margin-left: 20px;\n  color: #fff;\n}\nheader .user-info .text-logo h1 {\n  font-size: 0.64rem;\n  line-height: 1.5;\n}\nheader .user-info .text-logo h1 a {\n  color: #fff;\n}\nheader .user-info .text-logo h2 {\n  font-weight: normal;\n  font-size: 12px;\n}\nheader .user-info .nav {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-pack: distribute;\n  justify-content: space-around;\n}\nheader .user-info .nav li {\n  padding: 0 5px 1px 5px;\n  border-bottom: 2px solid transparent;\n}\nheader .user-info .nav li a {\n  color: white;\n  font-size: 15px;\n}\nheader .user-info .nav .has-click {\n  border-bottom: 3px solid #fff;\n}\n", ""]);
+	exports.push([module.id, "header {\n  background: #3c9;\n  padding: 16px 0;\n  height: 1.7rem;\n  box-shadow: 2px 4px 5px rgba(3, 3, 3, 0.2);\n}\nheader .user-info {\n  width: 95%;\n  height: 100%;\n  margin: 0 auto;\n  position: relative;\n}\nheader .user-info .img-logo {\n  float: left;\n  width: 1.2rem;\n  height: 1.2rem;\n  border-radius: 100%;\n  overflow: hidden;\n}\nheader .user-info .text-logo {\n  float: left;\n  width: 75%;\n  margin-left: 20px;\n  color: #fff;\n}\nheader .user-info .text-logo h1 {\n  font-size: 0.64rem;\n  line-height: 1.5;\n}\nheader .user-info .text-logo h1 a {\n  color: #fff;\n}\nheader .user-info .text-logo h2 {\n  font-weight: normal;\n  font-size: 12px;\n}\n.nav {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-pack: distribute;\n  justify-content: space-around;\n  color: #fff;\n}\n.nav li {\n  padding: 0 5px 1px 5px;\n  border-bottom: 2px solid transparent;\n}\n.nav li a {\n  color: white;\n  font-size: 15px;\n}\n.nav .has-click {\n  border-bottom: 3px solid #fff;\n}\n", ""]);
 
 	// exports
 
@@ -25600,12 +25649,6 @@
 
 /***/ }),
 /* 212 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__.p + "images/59b5bc1c.logo.png";
-
-/***/ }),
-/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/*
@@ -25830,7 +25873,7 @@
 
 
 /***/ }),
-/* 214 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-api@0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -25932,6 +25975,25 @@
 
 			getCurrentParam: function getCurrentParam(name) {
 				this.getParam(name, location.href);
+			},
+
+			//获取用户登录信息
+			getLoginInfo: function getLoginInfo() {
+				var storage = window.localStorage || {};
+				if (storage && storage.login) {
+					var loginData = JSON.parse(storage.login);
+					return loginData;
+				}
+			},
+
+			//时间毫秒数格式化
+			getFormatTime: function getFormatTime(timestamp) {
+				var time = void 0;
+				/*if (timestamp.length < 13) {
+	   	time = new Date(parseInt(timestamp * 1000));
+	   } */
+				time = new Date(parseInt(timestamp));
+				return time.getFullYear() + "-" + (time.getMonth() + 1) + "-" + time.getDate() + " " + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
 			},
 
 			addStat: function addStat(_ref) {
@@ -26163,7 +26225,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "Utils.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 215 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-api@0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -26194,7 +26256,7 @@
 
 	//FooterInfo.js
 
-	__webpack_require__(216);
+	__webpack_require__(215);
 
 	var FooterInfo = function (_React$Component) {
 	    _inherits(FooterInfo, _React$Component);
@@ -26261,16 +26323,16 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "FooterInfo.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 216 */
+/* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(217);
+	var content = __webpack_require__(216);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(213)(content, {});
+	var update = __webpack_require__(212)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -26287,7 +26349,7 @@
 	}
 
 /***/ }),
-/* 217 */
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(211)();
@@ -26295,13 +26357,13 @@
 
 
 	// module
-	exports.push([module.id, ".footer {\n  width: 100%;\n  background: #1f1f1f;\n}\n.footer .footer-main {\n  width: 95%;\n  margin: 0 auto;\n}\n.footer .footer-main .bottom-avator {\n  width: 100%;\n  height: 3.7rem;\n  position: relative;\n}\n.footer .footer-main .bottom-avator .line {\n  width: 10px;\n  height: 1.7rem;\n  border-right: 2px solid #fff;\n  margin: 0 auto;\n}\n.footer .footer-main .bottom-avator .avator {\n  width: 2rem;\n  height: 2rem;\n  border-radius: 100%;\n  background: url(" + __webpack_require__(212) + ") no-repeat;\n  background-size: 100% 100%;\n  margin: 0 auto;\n  overflow: hidden;\n}\n.footer .footer-main .info {\n  width: 90%;\n  margin: 0 auto;\n  color: #fff;\n  font-size: 0.4rem;\n  padding: 20px 0;\n}\n.footer .footer-main .copyright {\n  text-align: center;\n  padding-bottom: 20px;\n}\n.footer .footer-main .copyright strong {\n  font-weight: normal;\n  color: #2ca6cb;\n}\n", ""]);
+	exports.push([module.id, ".footer {\n  width: 100%;\n  background: #1f1f1f;\n}\n.footer .footer-main {\n  width: 95%;\n  margin: 0 auto;\n}\n.footer .footer-main .bottom-avator {\n  width: 100%;\n  height: 3.7rem;\n  position: relative;\n}\n.footer .footer-main .bottom-avator .line {\n  width: 10px;\n  height: 1.7rem;\n  border-right: 2px solid #fff;\n  margin: 0 auto;\n}\n.footer .footer-main .bottom-avator .avator {\n  width: 2rem;\n  height: 2rem;\n  border-radius: 100%;\n  margin: 0 auto;\n  overflow: hidden;\n}\n.footer .footer-main .info {\n  width: 90%;\n  margin: 0 auto;\n  color: #fff;\n  font-size: 0.4rem;\n  padding: 20px 0;\n}\n.footer .footer-main .copyright {\n  text-align: center;\n  padding-bottom: 20px;\n}\n.footer .footer-main .copyright strong {\n  font-weight: normal;\n  color: #2ca6cb;\n}\n", ""]);
 
 	// exports
 
 
 /***/ }),
-/* 218 */
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-api@0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -26314,7 +26376,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	__webpack_require__(219);
+	__webpack_require__(218);
 
 	var _react = __webpack_require__(2);
 
@@ -26324,7 +26386,7 @@
 
 	var _reactRouterDom = __webpack_require__(160);
 
-	var _tap = __webpack_require__(221);
+	var _tap = __webpack_require__(220);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26333,6 +26395,8 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //IndexArticleItem.js 首页文章列表Item
+
+	var Utils = __webpack_require__(213);
 
 	var IndexArticleItem = function (_React$Component) {
 	    _inherits(IndexArticleItem, _React$Component);
@@ -26357,6 +26421,7 @@
 	            var userName = this.props.userName || '';
 	            var articleData = this.props.data;
 	            var link = '/detail/' + articleData._id;
+	            var time = Utils.getFormatTime(articleData.timestamp);
 	            return _react2.default.createElement(
 	                'div',
 	                null,
@@ -26365,7 +26430,7 @@
 	                    null,
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'article-title', 'data-href': link, onClick: (0, _tap.wrapperClick)(this.handlerTap.bind(this)) },
+	                        { className: 'article-title', 'data-href': link, onClick: this.handlerTap.bind(this) },
 	                        articleData.title
 	                    ),
 	                    _react2.default.createElement(
@@ -26382,7 +26447,7 @@
 	                        'p',
 	                        { className: 'article-time' },
 	                        '\u53D1\u8868\u4E8E\xA0',
-	                        articleData.timestamp
+	                        time
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
@@ -26440,16 +26505,16 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "IndexArticleItem.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 219 */
+/* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(220);
+	var content = __webpack_require__(219);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(213)(content, {});
+	var update = __webpack_require__(212)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -26466,7 +26531,7 @@
 	}
 
 /***/ }),
-/* 220 */
+/* 219 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(211)();
@@ -26480,7 +26545,7 @@
 
 
 /***/ }),
-/* 221 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-api@0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -27321,16 +27386,16 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "tap.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 222 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(223);
+	var content = __webpack_require__(222);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(213)(content, {});
+	var update = __webpack_require__(212)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -27347,7 +27412,7 @@
 	}
 
 /***/ }),
-/* 223 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(211)();
@@ -27355,13 +27420,13 @@
 
 
 	// module
-	exports.push([module.id, "html,\nbody {\n  color: #817c7c;\n  background: #eef0f2;\n}\nbody,\ndiv,\nspan,\nobject,\niframe,\nh1,\nh2,\nh3,\nh4,\nh5,\nh6,\np,\npre,\na,\nabbr,\nacronym,\naddress,\ncode,\ndel,\ndfn,\nem,\nimg,\ndl,\ndt,\ndd,\nol,\nul,\nli,\nfieldset,\nform,\nlabel,\nlegend,\ncaption,\ntbody,\ntfoot,\nthead,\ntr {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  outline: 0;\n  font-weight: inherit;\n  font-style: inherit;\n  font-family: inherit;\n  font-size: 100%;\n  vertical-align: baseline;\n}\na {\n  text-decoration: none;\n  color: #ccc;\n}\nli {\n  list-style: none;\n}\nimg {\n  max-width: 100%;\n  max-height: 100%;\n  display: block;\n}\ntable {\n  border-collapse: separate;\n  border-spacing: 0;\n  vertical-align: middle;\n}\ncaption,\nth,\ntd {\n  text-align: left;\n  font-weight: normal;\n  vertical-align: middle;\n}\na img {\n  border: none;\n}\n#mobileblog {\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  width: 100%;\n  font-size: 14px;\n  background: #fafafa;\n}\n.wrapper {\n  width: 100%;\n  margin: 0 auto;\n}\n.container {\n  width: 95%;\n  margin: 0 auto;\n  min-height: 5rem;\n}\n.main {\n  margin: 16px 0;\n  line-height: 1.8;\n}\n", ""]);
+	exports.push([module.id, "html,\nbody {\n  color: #817c7c;\n  background: #eef0f2;\n}\nbody,\ndiv,\nspan,\nobject,\niframe,\nh1,\nh2,\nh3,\nh4,\nh5,\nh6,\np,\npre,\na,\nabbr,\nacronym,\naddress,\ncode,\ndel,\ndfn,\nem,\nimg,\ndl,\ndt,\ndd,\nol,\nul,\nli,\nfieldset,\nform,\nlabel,\nlegend,\ncaption,\ntbody,\ntfoot,\nthead,\ntr {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  outline: 0;\n  font-weight: inherit;\n  font-style: inherit;\n  font-family: inherit;\n  font-size: 100%;\n  vertical-align: baseline;\n}\na {\n  text-decoration: none;\n  color: #ccc;\n}\nli {\n  list-style: none;\n}\nimg {\n  max-width: 100%;\n  max-height: 100%;\n  display: block;\n}\ntable {\n  border-collapse: separate;\n  border-spacing: 0;\n  vertical-align: middle;\n}\ncaption,\nth,\ntd {\n  text-align: left;\n  font-weight: normal;\n  vertical-align: middle;\n}\na img {\n  border: none;\n}\nhtml,\nbody {\n  height: 100%;\n}\n#mobileblog {\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  width: 100%;\n  min-height: 100%;\n  font-size: 14px;\n  background: #fafafa;\n}\n.wrapper {\n  width: 100%;\n  margin: 0 auto;\n}\n.container {\n  width: 95%;\n  margin: 0 auto;\n  min-height: 5rem;\n}\n.main {\n  padding: 16px 0;\n  line-height: 1.8;\n}\n", ""]);
 
 	// exports
 
 
 /***/ }),
-/* 224 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-api@0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -27372,20 +27437,48 @@
 
 	!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
 
-	    var StoreBase = __webpack_require__(225);
-	    var Utils = __webpack_require__(214);
+	    var StoreBase = __webpack_require__(224);
+	    var Utils = __webpack_require__(213);
 
 	    var hostName = 'http://lx.mobileblog.xmixue.com:8008';
+	    var LOGIN_PATH = hostName + '/login';
+	    var REGISTER_PATH = hostName + '/register';
 	    var USER_INFO = hostName + '/users';
 	    var INDEX_ARC_LIST = hostName + '/indexarc';
+	    var ARC_BYTAG_LIST = hostName + '/tagarc';
 	    var ARC_DETAIL = hostName + '/detail';
 	    var ADD_READING = hostName + '/addread';
 	    var ADD_ARTICLE = hostName + '/addarticle';
 	    var EDIT_ARTICLE = hostName + '/editarticle';
 	    var DEL_ARTICLE = hostName + '/delarticle';
+	    var GET_COMMENT = hostName + '/getcomment';
+	    var POST_COMMENT = hostName + '/postcomment';
+	    var DO_UPVOTE = hostName + '/doupvote';
 
 	    var HomeStore = StoreBase.createClass({
 	        actions: {
+	            //登陆
+	            doLogin: function doLogin(params) {
+	                var me = this;
+	                Utils.getAjaxData(LOGIN_PATH, params, function (data) {
+	                    var data = data;
+	                    me.done('doLogin', data, true);
+	                }, function (data) {
+	                    me.error('doLogin', data);
+	                });
+	            },
+
+	            //注册
+	            doRegister: function doRegister(params) {
+	                var me = this;
+	                Utils.getAjaxData(REGISTER_PATH, params, function (data) {
+	                    var data = data;
+	                    me.done('doRegister', data, true);
+	                }, function (data) {
+	                    me.error('doRegister', data);
+	                });
+	            },
+
 	            //获取用户信息
 	            getUserInfoData: function getUserInfoData() {
 	                var me = this;
@@ -27404,6 +27497,27 @@
 	                    me.done('indexArc', data, true);
 	                }, function (data) {
 	                    me.error('indexArc', data);
+	                    console.log('errordata', data);
+	                });
+	            },
+	            getArcByTag: function getArcByTag(params) {
+	                var me = this;
+	                Utils.getAjaxData(ARC_BYTAG_LIST, params, function (data) {
+	                    var data = data;
+	                    me.done('tagArc', data, true);
+	                }, function (data) {
+	                    me.error('tagArc', data);
+	                    console.log('errordata', data);
+	                });
+	            },
+	            //获取评论列表
+	            getCommentData: function getCommentData(params) {
+	                var me = this;
+	                Utils.getAjaxData(GET_COMMENT, params, function (data) {
+	                    var data = data;
+	                    me.done('commentList', data, true);
+	                }, function (data) {
+	                    me.error('commentList', data);
 	                    console.log('errordata', data);
 	                });
 	            },
@@ -27459,6 +27573,28 @@
 	                }, function (data) {
 	                    me.error('delArticle', data);
 	                });
+	            },
+
+	            //发表评论
+	            postComment: function postComment(params) {
+	                var me = this;
+	                Utils.getAjaxData(POST_COMMENT, params, function (data) {
+	                    var data = data;
+	                    me.done('postComment', data, true);
+	                }, function (data) {
+	                    me.error('postComment', data);
+	                });
+	            },
+
+	            //点赞和取消点赞
+	            doUpVote: function doUpVote(params) {
+	                var me = this;
+	                Utils.getAjaxData(DO_UPVOTE, params, function (data) {
+	                    var data = data;
+	                    me.done('upvote', data, true);
+	                }, function (data) {
+	                    me.error('upvote', data);
+	                });
 	            }
 	        },
 	        filters: {
@@ -27473,7 +27609,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "HomeStore.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 225 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-api@0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -27598,7 +27734,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "StoreBase.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 226 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-api@0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -27611,9 +27747,9 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	__webpack_require__(222);
+	__webpack_require__(221);
 
-	__webpack_require__(227);
+	__webpack_require__(226);
 
 	var _react = __webpack_require__(2);
 
@@ -27625,6 +27761,12 @@
 
 	var _HeaderNav2 = _interopRequireDefault(_HeaderNav);
 
+	var _AlertDialog = __webpack_require__(228);
+
+	var _AlertDialog2 = _interopRequireDefault(_AlertDialog);
+
+	var _tap = __webpack_require__(220);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27633,7 +27775,9 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //LoginPage.js 登陆页
 
-	var HomeStore = __webpack_require__(224);
+	var HomeStore = __webpack_require__(223);
+
+	//localStorage.clear();
 
 	var LoginPage = function (_React$Component) {
 	    _inherits(LoginPage, _React$Component);
@@ -27654,11 +27798,103 @@
 	            });
 	        };
 
+	        _this.afterGetDoLogin = function (data) {
+	            var me = _this;
+	            var loginInfo = {};
+	            var validInfo = '';
+	            if (!data) {
+	                return;
+	            }
+	            if (data.error_code == 2 && data.result) {
+	                if (window.localStorage) {
+	                    var storage = window.localStorage;
+	                    loginInfo = JSON.stringify(data.result);
+	                    storage.setItem('login', loginInfo);
+	                }
+	                _this.setState({
+	                    showDialog: true,
+	                    dialogMsg: data.error_msg
+	                });
+	            } else {
+	                _this.setState({
+	                    validInfo: data.error_msg
+	                });
+	            }
+	        };
+
+	        _this.getLoginInfo = function () {
+	            var storage = window.localStorage;
+	            if (storage && storage.login) {
+	                var loginData = JSON.parse(storage.login);
+	                console.log('=====LoginPage LoginInfo', loginData);
+	                _this.setState({
+	                    loginInfo: loginData
+	                });
+	            }
+	        };
+
+	        _this.loginHandler = function () {
+	            var userName = _this.refs.userName;
+	            var password = _this.refs.password;
+	            var params = {};
+
+	            //输入有效性验证
+	            if (userName.length > 8) {
+	                _this.setState({
+	                    validInfo: '用户名不能超过8位'
+	                });
+	                return;
+	            }
+	            if (userName.value == '') {
+	                _this.setState({
+	                    validInfo: '用户名不能为空'
+	                });
+	                return;
+	            }
+	            if (password.length > 10) {
+	                _this.setState({
+	                    validInfo: '用户密码不能超过10位'
+	                });
+	                return;
+	            }
+	            if (password.value == '') {
+	                _this.setState({
+	                    validInfo: '用户密码不能为空'
+	                });
+	                return;
+	            }
+
+	            params = {
+	                user_name: userName.value || '',
+	                password: password.value || ''
+	            };
+	            HomeStore.doLogin(params);
+	        };
+
+	        _this.closeDialog = function (type) {
+	            _this.setState({
+	                showDialog: false
+	            }, function () {
+	                if (type == 'loginSccess') {
+	                    location.href = location.href.replace(location.hash, '') + '#' + '/index';
+	                }
+	            });
+	        };
+
+	        _this.jumpToRegister = function () {
+	            var link = '/register';
+	            location.href = location.href.replace(location.hash, '') + '#' + link;
+	        };
+
 	        _this.state = {
-	            userInfo: {}
+	            userInfo: {},
+	            validInfo: '',
+	            loginInfo: {},
+	            showDialog: false,
+	            dialogMsg: ''
 	        };
 	        HomeStore.dispose();
-	        HomeStore.listen(['userInfo'], _this);
+	        HomeStore.listen(['userInfo', 'doLogin'], _this);
 	        return _this;
 	    }
 
@@ -27668,12 +27904,18 @@
 	            var me = this;
 	            //获取用户信息
 	            HomeStore.getUserInfoData();
+	            //获取用户登录信息
+	            me.getLoginInfo();
 	        }
+
+	        //获取用户登录信息
+
 	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var me = this;
 	            var userData = me.state.userInfo || {};
+	            var validInfo = me.state.validInfo;
 
 	            return _react2.default.createElement(
 	                'div',
@@ -27682,17 +27924,13 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'container' },
+	                    _react2.default.createElement(_AlertDialog2.default, { dialogShow: me.state.showDialog, content: me.state.dialogMsg, close: this.closeDialog.bind(this, 'loginSccess') }),
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'main' },
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'login-wrapper' },
-	                            _react2.default.createElement(
-	                                'h3',
-	                                { className: 'notice-info' },
-	                                '\u975E\u7BA1\u7406\u5458\u8BF7\u91C7\u7528\u5E95\u90E8\u7684\u7B2C\u4E09\u65B9\u5DE5\u5177\u767B\u5F55'
-	                            ),
 	                            _react2.default.createElement(
 	                                'div',
 	                                { className: 'input-wrapper' },
@@ -27701,22 +27939,22 @@
 	                                    null,
 	                                    '\u8D26\u53F7\uFF1A'
 	                                ),
-	                                _react2.default.createElement('input', { type: 'text', placeholder: '\u8BF7\u8F93\u5165\u8D26\u53F7' }),
+	                                _react2.default.createElement('input', { ref: 'userName', type: 'text', placeholder: '\u8BF7\u8F93\u5165\u8D26\u53F7' }),
 	                                _react2.default.createElement('br', null),
 	                                _react2.default.createElement(
 	                                    'label',
 	                                    null,
 	                                    '\u5BC6\u7801\uFF1A'
 	                                ),
-	                                _react2.default.createElement('input', { type: 'password', placeholder: '\u8BF7\u8F93\u5165\u5BC6\u7801' }),
+	                                _react2.default.createElement('input', { ref: 'password', type: 'password', placeholder: '\u8BF7\u8F93\u5165\u5BC6\u7801' }),
 	                                _react2.default.createElement(
 	                                    'h3',
-	                                    { className: 'error-info' },
-	                                    '\u8D26\u53F7\u5BC6\u7801\u4E0D\u5339\u914D'
+	                                    { className: 'error-info', ref: 'validInfo' },
+	                                    validInfo
 	                                ),
 	                                _react2.default.createElement(
 	                                    'div',
-	                                    { className: 'login-conform' },
+	                                    { className: 'login-conform', onClick: me.loginHandler },
 	                                    '\u767B\u5F55'
 	                                )
 	                            ),
@@ -27725,8 +27963,8 @@
 	                                { className: 'else-login' },
 	                                _react2.default.createElement(
 	                                    'p',
-	                                    null,
-	                                    '\u7528\u6237\u8BF7\u4F7F\u7528\u7B2C\u4E09\u65B9\u5DE5\u5177\u8FDB\u884C\u767B\u5F55'
+	                                    { onClick: this.jumpToRegister },
+	                                    '\u65B0\u7528\u6237\u6CE8\u518C'
 	                                )
 	                            )
 	                        )
@@ -27744,16 +27982,16 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "LoginPage.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 227 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(228);
+	var content = __webpack_require__(227);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(213)(content, {});
+	var update = __webpack_require__(212)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -27770,7 +28008,7 @@
 	}
 
 /***/ }),
-/* 228 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(211)();
@@ -27778,13 +28016,13 @@
 
 
 	// module
-	exports.push([module.id, ".login-wrapper {\n  background: #fff;\n  padding: 0.6rem 15px;\n  border-radius: 6px;\n  margin-top: 1.2rem;\n}\n.login-wrapper .notice-info {\n  font-size: 16px;\n  line-height: 1.5;\n  padding-left: 0.65rem;\n}\n.login-wrapper .input-wrapper {\n  margin: 20px 0;\n}\n.login-wrapper .input-wrapper input {\n  width: 70%;\n  margin: 0 auto;\n  color: #817c7c;\n  padding: 6px 10px;\n  margin-bottom: 20px;\n  line-height: 2;\n  border-radius: 6px;\n  border: 1px solid #3c9;\n  font-size: 14px;\n}\n.login-wrapper .input-wrapper .error-info {\n  text-align: center;\n  color: red;\n}\n.login-wrapper .input-wrapper .login-conform {\n  border-radius: 0.6rem;\n  background-color: #3c9;\n  width: 70%;\n  margin: 20px auto;\n  text-align: center;\n  color: #fff;\n  line-height: 2.8;\n}\n.login-wrapper .else-login {\n  text-align: center;\n  font-size: 16px;\n}\n", ""]);
+	exports.push([module.id, ".login-wrapper {\n  background: #fff;\n  padding: 0.6rem 15px;\n  border-radius: 6px;\n  margin-top: 1.2rem;\n}\n.login-wrapper .input-wrapper {\n  margin: 20px 0;\n}\n.login-wrapper .input-wrapper input {\n  width: 70%;\n  margin: 0 auto;\n  color: #817c7c;\n  padding: 6px 10px;\n  margin-bottom: 20px;\n  line-height: 2;\n  border-radius: 6px;\n  border: 1px solid #3c9;\n  font-size: 14px;\n}\n.login-wrapper .input-wrapper .error-info {\n  text-align: center;\n  color: red;\n}\n.login-wrapper .input-wrapper .login-conform {\n  border-radius: 0.6rem;\n  background-color: #3c9;\n  width: 70%;\n  margin: 20px auto;\n  text-align: center;\n  color: #fff;\n  line-height: 2.8;\n}\n.login-wrapper .else-login {\n  text-align: center;\n  font-size: 16px;\n  width: 30%;\n  margin: 0 auto;\n}\n", ""]);
 
 	// exports
 
 
 /***/ }),
-/* 229 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-api@0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -27797,9 +28035,392 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	__webpack_require__(222);
+	__webpack_require__(229);
 
-	__webpack_require__(230);
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(159);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //AlertDialog.js 弹窗组件
+
+	var AlertDialog = function (_React$Component) {
+	    _inherits(AlertDialog, _React$Component);
+
+	    function AlertDialog() {
+	        var _ref;
+
+	        var _temp, _this, _ret;
+
+	        _classCallCheck(this, AlertDialog);
+
+	        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	            args[_key] = arguments[_key];
+	        }
+
+	        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AlertDialog.__proto__ || Object.getPrototypeOf(AlertDialog)).call.apply(_ref, [this].concat(args))), _this), _this.componentDidMount = function () {
+	            _this.center();
+	        }, _this.center = function () {
+	            var dialog = document.querySelector('.component-modal-dialog .dialog');
+	            //dialog.style.left = ((window.innerWidth - dialog.offsetWidth) /2)+"px";
+	            dialog.style.top = (window.innerHeight - dialog.offsetHeight) / 2 + "px";
+	        }, _this.getbutton = function () {
+	            var me = _this;
+	            if (me.props.close && me.props.confirm) {
+	                return _react2.default.createElement(
+	                    'div',
+	                    null,
+	                    _react2.default.createElement(
+	                        'a',
+	                        { className: 'close-btn half-close-btn', onTouchStart: me.props.close },
+	                        '\u5173\u95ED'
+	                    ),
+	                    _react2.default.createElement(
+	                        'a',
+	                        { className: 'close-btn half-confirm-btn', onTouchStart: me.props.confirm },
+	                        '\u786E\u8BA4'
+	                    )
+	                );
+	            }
+	            return _react2.default.createElement(
+	                'a',
+	                { className: 'close-btn', onTouchStart: me.props.close },
+	                '\u5173\u95ED'
+	            );
+	        }, _temp), _possibleConstructorReturn(_this, _ret);
+	    }
+
+	    _createClass(AlertDialog, [{
+	        key: 'render',
+	        value: function render() {
+	            var me = this;
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'component-modal-dialog', style: { display: this.props.dialogShow ? 'block' : 'none' } },
+	                _react2.default.createElement('div', { className: 'dialog-mask', onTouchStart: me.props.close }),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'dialog' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'modal-body' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'component-alert-content' },
+	                            me.props.content ? me.props.content : me.props.children
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'modal-button' },
+	                        me.getbutton()
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return AlertDialog;
+	}(_react2.default.Component);
+
+	exports.default = AlertDialog;
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "AlertDialog.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 229 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(230);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(212)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!../../../../node_modules/_css-loader@0.17.0@css-loader/index.js!../../../../node_modules/_less-loader@2.2.3@less-loader/index.js!../../../../node_modules/_autoprefixer-loader@3.2.0@autoprefixer-loader/index.js!./alertDialog.css", function() {
+				var newContent = require("!!../../../../node_modules/_css-loader@0.17.0@css-loader/index.js!../../../../node_modules/_less-loader@2.2.3@less-loader/index.js!../../../../node_modules/_autoprefixer-loader@3.2.0@autoprefixer-loader/index.js!./alertDialog.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ }),
+/* 230 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(211)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".component-modal-dialog {\n  position: fixed;\n  *position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 200;\n}\n.component-modal-dialog .dialog-mask {\n  position: fixed;\n  *position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  background-color: black;\n  opacity: 0.6;\n  filter: alpha(opacity=60);\n  _filter: alpha(opacity=60);\n  z-index: 201;\n}\n.component-modal-dialog .dialog {\n  position: fixed;\n  left: 10%;\n  top: 0;\n  width: 80%;\n  background-color: #fff;\n  z-index: 202;\n  border-radius: 0.2rem;\n}\n.component-modal-dialog .dialog .modal-head {\n  height: 35px;\n  line-height: 35px;\n  position: relative;\n  border-bottom: #ccc 1px solid;\n}\n.component-modal-dialog .dialog .modal-head .title {\n  padding-left: 10px;\n  padding-right: 40px;\n  font-size: 16px;\n}\n.component-modal-dialog .dialog .modal-body {\n  min-height: 3rem;\n}\n.component-modal-dialog .dialog .modal-button {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: 1rem;\n  line-height: 1rem;\n  border-top: 1px #e0e0e0 solid;\n}\n.component-modal-dialog .dialog .modal-button .close-btn {\n  width: 100%;\n  text-align: center;\n  font-size: 16px;\n  cursor: pointer;\n  display: inline-block;\n  color: #333333;\n}\n.component-modal-dialog .dialog .modal-button .half-close-btn {\n  width: 50%;\n}\n.component-modal-dialog .dialog .modal-button .half-confirm-btn {\n  width: 50%;\n  border-left: 1px #e0e0e0 solid;\n  box-sizing: border-box;\n}\n.component-alert {\n  padding: 20px;\n}\n.component-alert-content {\n  padding: 20px;\n  font-size: 16px;\n  line-height: 1.5;\n  overflow: hidden;\n  text-align: center;\n}\n.component-confirm {\n  padding: 40px;\n}\n.component-confirm-button-area {\n  text-align: center;\n  padding: 10px;\n}\n.component-confirm-button-area a {\n  cursor: pointer;\n  margin-right: 5px;\n}\n", ""]);
+
+	// exports
+
+
+/***/ }),
+/* 231 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-api@0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	__webpack_require__(221);
+
+	__webpack_require__(226);
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(159);
+
+	var _HeaderNav = __webpack_require__(207);
+
+	var _HeaderNav2 = _interopRequireDefault(_HeaderNav);
+
+	var _AlertDialog = __webpack_require__(228);
+
+	var _AlertDialog2 = _interopRequireDefault(_AlertDialog);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //RegisterPage.js 注册页
+
+	var HomeStore = __webpack_require__(223);
+
+	var RegisterPage = function (_React$Component) {
+	    _inherits(RegisterPage, _React$Component);
+
+	    function RegisterPage(props) {
+	        _classCallCheck(this, RegisterPage);
+
+	        var _this = _possibleConstructorReturn(this, (RegisterPage.__proto__ || Object.getPrototypeOf(RegisterPage)).call(this, props));
+
+	        _this.afterGetUserInfo = function (data) {
+	            var me = _this;
+	            console.log('UserData=======', data);
+	            if (!data) {
+	                return;
+	            }
+	            me.setState({
+	                userInfo: data
+	            });
+	        };
+
+	        _this.afterGetDoRegister = function (data) {
+	            var me = _this;
+	            var loginInfo = {};
+	            var validInfo = '';
+	            if (!data) {
+	                return;
+	            }
+	            if (data.error_code == 0) {
+	                _this.setState({
+	                    showDialog: true,
+	                    dialogMsg: data.error_msg
+	                });
+	            } else {
+	                _this.setState({
+	                    validInfo: data.error_msg
+	                });
+	            }
+	        };
+
+	        _this.registerHandler = function () {
+	            var userName = _this.refs.userName;
+	            var password = _this.refs.password;
+	            var passwordAgain = _this.refs.passwordAgain;
+	            var params = {};
+
+	            //输入有效性验证
+	            if (userName.length > 8) {
+	                _this.setState({
+	                    validInfo: '用户名不能超过8位'
+	                });
+	                return;
+	            }
+	            if (userName.value == '') {
+	                _this.setState({
+	                    validInfo: '用户名不能为空'
+	                });
+	                return;
+	            }
+	            if (password.length > 10) {
+	                _this.setState({
+	                    validInfo: '用户密码不能超过10位'
+	                });
+	                return;
+	            }
+	            if (password.value == '') {
+	                _this.setState({
+	                    validInfo: '用户密码不能为空'
+	                });
+	                return;
+	            }
+	            if (passwordAgain.value == '') {
+	                _this.setState({
+	                    validInfo: '请再次输入密码'
+	                });
+	                return;
+	            }
+	            if (password.value != passwordAgain.value) {
+	                _this.setState({
+	                    validInfo: '密码不一致，请重新输入'
+	                });
+	                return;
+	            }
+
+	            params = {
+	                user_name: userName.value || '',
+	                password: password.value || ''
+	            };
+	            HomeStore.doRegister(params);
+	        };
+
+	        _this.closeDialog = function (type) {
+	            _this.setState({
+	                showDialog: false
+	            }, function () {
+	                if (type == 'registerSuccess') {
+	                    location.href = location.href.replace(location.hash, '') + '#' + '/login';
+	                }
+	            });
+	        };
+
+	        _this.state = {
+	            userInfo: {},
+	            validInfo: '',
+	            loginInfo: {},
+	            showDialog: false,
+	            dialogMsg: ''
+	        };
+	        HomeStore.dispose();
+	        HomeStore.listen(['userInfo', 'doRegister'], _this);
+	        return _this;
+	    }
+
+	    _createClass(RegisterPage, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var me = this;
+	            //获取用户信息
+	            HomeStore.getUserInfoData();
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var me = this;
+	            var userData = me.state.userInfo || {};
+	            var validInfo = me.state.validInfo;
+
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'wrapper' },
+	                _react2.default.createElement(_HeaderNav2.default, { data: userData }),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'container' },
+	                    _react2.default.createElement(_AlertDialog2.default, { dialogShow: me.state.showDialog, content: me.state.dialogMsg, close: this.closeDialog.bind(this, 'registerSuccess') }),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'main' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'login-wrapper' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'input-wrapper' },
+	                                _react2.default.createElement(
+	                                    'label',
+	                                    null,
+	                                    '\u8D26\u53F7\uFF1A'
+	                                ),
+	                                _react2.default.createElement('input', { ref: 'userName', type: 'text', placeholder: '\u8BF7\u8F93\u5165\u8D26\u53F7' }),
+	                                _react2.default.createElement('br', null),
+	                                _react2.default.createElement(
+	                                    'label',
+	                                    null,
+	                                    '\u5BC6\u7801\uFF1A'
+	                                ),
+	                                _react2.default.createElement('input', { ref: 'password', type: 'password', name: 'password1', placeholder: '\u8BF7\u8F93\u5165\u5BC6\u7801' }),
+	                                _react2.default.createElement('br', null),
+	                                _react2.default.createElement(
+	                                    'label',
+	                                    null,
+	                                    '\u786E\u8BA4\u5BC6\u7801\uFF1A'
+	                                ),
+	                                _react2.default.createElement('input', { ref: 'passwordAgain', type: 'password', name: 'password2', placeholder: '\u518D\u6B21\u8F93\u5165\u5BC6\u7801' }),
+	                                _react2.default.createElement(
+	                                    'h3',
+	                                    { className: 'error-info', ref: 'validInfo' },
+	                                    validInfo
+	                                ),
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'login-conform', onClick: me.registerHandler },
+	                                    '\u6CE8\u518C'
+	                                )
+	                            ),
+	                            _react2.default.createElement('div', { className: 'else-login' })
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return RegisterPage;
+	}(_react2.default.Component);
+
+	exports.default = RegisterPage;
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "RegisterPage.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 232 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-api@0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	__webpack_require__(221);
+
+	__webpack_require__(233);
 
 	var _react = __webpack_require__(2);
 
@@ -27813,7 +28434,7 @@
 
 	var _indexData = __webpack_require__(208);
 
-	var _AlertDialog = __webpack_require__(232);
+	var _AlertDialog = __webpack_require__(228);
 
 	var _AlertDialog2 = _interopRequireDefault(_AlertDialog);
 
@@ -27826,7 +28447,7 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //EditPage 编辑文章页
 
 
-	var HomeStore = __webpack_require__(224);
+	var HomeStore = __webpack_require__(223);
 
 	var EditPage = function (_React$Component) {
 	    _inherits(EditPage, _React$Component);
@@ -28119,159 +28740,6 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "EditPage.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 230 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(231);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(213)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!../../../../node_modules/_css-loader@0.17.0@css-loader/index.js!../../../../node_modules/_less-loader@2.2.3@less-loader/index.js!../../../../node_modules/_autoprefixer-loader@3.2.0@autoprefixer-loader/index.js!./edit.less", function() {
-				var newContent = require("!!../../../../node_modules/_css-loader@0.17.0@css-loader/index.js!../../../../node_modules/_less-loader@2.2.3@less-loader/index.js!../../../../node_modules/_autoprefixer-loader@3.2.0@autoprefixer-loader/index.js!./edit.less");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ }),
-/* 231 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(211)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".edit-wrapper .edit-content {\n  background: #fafafa;\n  padding-top: 10px;\n}\n.edit-wrapper .edit-content .input-wrapper {\n  margin: 10px;\n  font-size: 16px;\n}\n.edit-wrapper .edit-content .input-wrapper input {\n  width: 98%;\n  margin-top: 10px;\n  padding: 8px 2px;\n  color: #3e3e3e;\n  overflow: hidden;\n  font-size: 16px;\n  text-overflow: ellipsis;\n}\n.edit-wrapper .edit-content .input-wrapper textarea {\n  margin-top: 8px;\n  width: 98%;\n  line-height: 1.5;\n  font-size: 16px;\n  color: #3e3e3e;\n}\n.edit-wrapper .edit-content .con-tag h3 {\n  margin-bottom: 10px;\n}\n.edit-wrapper .edit-content .con-tag .has-tags span {\n  margin-right: 20px;\n  min-width: 1.36rem;\n  font-size: 14px;\n  padding: 3px 6px;\n  border-radius: 20px;\n  border: 1px solid #817c7c;\n  margin: 0 10px 10px 10px;\n  text-align: center;\n  display: inline-block;\n}\n.edit-wrapper .edit-content .con-tag .has-tags .has-click {\n  border: 1px solid #3c9;\n}\n.edit-wrapper .edit-content .save {\n  border-radius: 0.6rem;\n  background-color: #3c9;\n  width: 70%;\n  margin: 20px auto;\n  text-align: center;\n  color: #fff;\n  line-height: 2.8;\n}\n", ""]);
-
-	// exports
-
-
-/***/ }),
-/* 232 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-api@0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	__webpack_require__(233);
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(159);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //AlertDialog.js 弹窗组件
-
-	var AlertDialog = function (_React$Component) {
-	    _inherits(AlertDialog, _React$Component);
-
-	    function AlertDialog() {
-	        var _ref;
-
-	        var _temp, _this, _ret;
-
-	        _classCallCheck(this, AlertDialog);
-
-	        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-	            args[_key] = arguments[_key];
-	        }
-
-	        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AlertDialog.__proto__ || Object.getPrototypeOf(AlertDialog)).call.apply(_ref, [this].concat(args))), _this), _this.componentDidMount = function () {
-	            _this.center();
-	        }, _this.center = function () {
-	            var dialog = document.querySelector('.component-modal-dialog .dialog');
-	            //dialog.style.left = ((window.innerWidth - dialog.offsetWidth) /2)+"px";
-	            dialog.style.top = (window.innerHeight - dialog.offsetHeight) / 2 + "px";
-	        }, _this.getbutton = function () {
-	            var me = _this;
-	            if (me.props.close && me.props.confirm) {
-	                return _react2.default.createElement(
-	                    'div',
-	                    null,
-	                    _react2.default.createElement(
-	                        'a',
-	                        { className: 'close-btn half-close-btn', onTouchStart: me.props.close },
-	                        '\u5173\u95ED'
-	                    ),
-	                    _react2.default.createElement(
-	                        'a',
-	                        { className: 'close-btn half-confirm-btn', onTouchStart: me.props.confirm },
-	                        '\u786E\u8BA4'
-	                    )
-	                );
-	            }
-	            return _react2.default.createElement(
-	                'a',
-	                { className: 'close-btn', onTouchStart: me.props.close },
-	                '\u5173\u95ED'
-	            );
-	        }, _temp), _possibleConstructorReturn(_this, _ret);
-	    }
-
-	    _createClass(AlertDialog, [{
-	        key: 'render',
-	        value: function render() {
-	            var me = this;
-	            return _react2.default.createElement(
-	                'div',
-	                { className: 'component-modal-dialog', style: { display: this.props.dialogShow ? 'block' : 'none' } },
-	                _react2.default.createElement('div', { className: 'dialog-mask', onTouchStart: me.props.close }),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'dialog' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'modal-body' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'component-alert-content' },
-	                            me.props.content ? me.props.content : me.props.children
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'modal-button' },
-	                        me.getbutton()
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-
-	    return AlertDialog;
-	}(_react2.default.Component);
-
-	exports.default = AlertDialog;
-
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "AlertDialog.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ }),
 /* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -28281,14 +28749,14 @@
 	var content = __webpack_require__(234);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(213)(content, {});
+	var update = __webpack_require__(212)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../../../node_modules/_css-loader@0.17.0@css-loader/index.js!../../../../node_modules/_less-loader@2.2.3@less-loader/index.js!../../../../node_modules/_autoprefixer-loader@3.2.0@autoprefixer-loader/index.js!./alertDialog.css", function() {
-				var newContent = require("!!../../../../node_modules/_css-loader@0.17.0@css-loader/index.js!../../../../node_modules/_less-loader@2.2.3@less-loader/index.js!../../../../node_modules/_autoprefixer-loader@3.2.0@autoprefixer-loader/index.js!./alertDialog.css");
+			module.hot.accept("!!../../../../node_modules/_css-loader@0.17.0@css-loader/index.js!../../../../node_modules/_less-loader@2.2.3@less-loader/index.js!../../../../node_modules/_autoprefixer-loader@3.2.0@autoprefixer-loader/index.js!./edit.less", function() {
+				var newContent = require("!!../../../../node_modules/_css-loader@0.17.0@css-loader/index.js!../../../../node_modules/_less-loader@2.2.3@less-loader/index.js!../../../../node_modules/_autoprefixer-loader@3.2.0@autoprefixer-loader/index.js!./edit.less");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -28306,7 +28774,7 @@
 
 
 	// module
-	exports.push([module.id, ".component-modal-dialog {\n  position: fixed;\n  *position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 200;\n}\n.component-modal-dialog .dialog-mask {\n  position: fixed;\n  *position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  background-color: black;\n  opacity: 0.6;\n  filter: alpha(opacity=60);\n  _filter: alpha(opacity=60);\n  z-index: 201;\n}\n.component-modal-dialog .dialog {\n  position: fixed;\n  left: 10%;\n  top: 0;\n  width: 80%;\n  background-color: #fff;\n  z-index: 202;\n  border-radius: 0.2rem;\n}\n.component-modal-dialog .dialog .modal-head {\n  height: 35px;\n  line-height: 35px;\n  position: relative;\n  border-bottom: #ccc 1px solid;\n}\n.component-modal-dialog .dialog .modal-head .title {\n  padding-left: 10px;\n  padding-right: 40px;\n  font-size: 16px;\n}\n.component-modal-dialog .dialog .modal-body {\n  min-height: 3rem;\n}\n.component-modal-dialog .dialog .modal-button {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: 1rem;\n  line-height: 1rem;\n  border-top: 1px #e0e0e0 solid;\n}\n.component-modal-dialog .dialog .modal-button .close-btn {\n  width: 100%;\n  text-align: center;\n  font-size: 16px;\n  cursor: pointer;\n  display: inline-block;\n  color: #333333;\n}\n.component-modal-dialog .dialog .modal-button .half-close-btn {\n  width: 50%;\n}\n.component-modal-dialog .dialog .modal-button .half-confirm-btn {\n  width: 50%;\n  border-left: 1px #e0e0e0 solid;\n}\n.component-alert {\n  padding: 20px;\n}\n.component-alert-content {\n  padding: 20px;\n  font-size: 16px;\n  line-height: 1.5;\n  overflow: hidden;\n  text-align: center;\n}\n.component-confirm {\n  padding: 40px;\n}\n.component-confirm-button-area {\n  text-align: center;\n  padding: 10px;\n}\n.component-confirm-button-area a {\n  cursor: pointer;\n  margin-right: 5px;\n}\n", ""]);
+	exports.push([module.id, ".edit-wrapper .edit-content {\n  background: #fafafa;\n  padding-top: 10px;\n}\n.edit-wrapper .edit-content .input-wrapper {\n  margin: 10px;\n  font-size: 16px;\n}\n.edit-wrapper .edit-content .input-wrapper input {\n  width: 98%;\n  margin-top: 10px;\n  padding: 8px 2px;\n  color: #3e3e3e;\n  overflow: hidden;\n  font-size: 16px;\n  text-overflow: ellipsis;\n}\n.edit-wrapper .edit-content .input-wrapper textarea {\n  margin-top: 8px;\n  width: 98%;\n  line-height: 1.5;\n  font-size: 16px;\n  color: #3e3e3e;\n}\n.edit-wrapper .edit-content .con-tag h3 {\n  margin-bottom: 10px;\n}\n.edit-wrapper .edit-content .con-tag .has-tags span {\n  margin-right: 20px;\n  min-width: 1.36rem;\n  font-size: 14px;\n  padding: 3px 6px;\n  border-radius: 20px;\n  border: 1px solid #817c7c;\n  margin: 0 10px 10px 10px;\n  text-align: center;\n  display: inline-block;\n}\n.edit-wrapper .edit-content .con-tag .has-tags .has-click {\n  border: 1px solid #3c9;\n}\n.edit-wrapper .edit-content .save {\n  border-radius: 0.6rem;\n  background-color: #3c9;\n  width: 70%;\n  margin: 20px auto;\n  text-align: center;\n  color: #fff;\n  line-height: 2.8;\n}\n", ""]);
 
 	// exports
 
@@ -28337,7 +28805,7 @@
 
 	var _HeaderNav2 = _interopRequireDefault(_HeaderNav);
 
-	var _FooterInfo = __webpack_require__(215);
+	var _FooterInfo = __webpack_require__(214);
 
 	var _FooterInfo2 = _interopRequireDefault(_FooterInfo);
 
@@ -28357,10 +28825,10 @@
 
 	//ArchivePage.js 文章归档页
 
-	__webpack_require__(222);
+	__webpack_require__(221);
 	__webpack_require__(237);
 
-	var HomeStore = __webpack_require__(224);
+	var HomeStore = __webpack_require__(223);
 
 	var ArchivePage = function (_Component) {
 	    _inherits(ArchivePage, _Component);
@@ -28381,6 +28849,17 @@
 	            });
 	        };
 
+	        _this.afterGetTagArc = function (data) {
+	            var me = _this;
+	            console.log('IndexArcData=======', data);
+	            if (!data) {
+	                return;
+	            }
+	            me.setState({
+	                tagArc: data
+	            });
+	        };
+
 	        _this.afterGetIndexArc = function (data) {
 	            var me = _this;
 	            console.log('IndexArcData=======', data);
@@ -28389,6 +28868,27 @@
 	            }
 	            me.setState({
 	                indexArc: data
+	            }, function () {
+	                _this.getTagData();
+	            });
+	        };
+
+	        _this.getTagData = function () {
+	            //标签去重
+	            var data = _this.state.indexArc;
+	            console.log('getTagData', data);
+	            var tempTagArr = [];
+	            var hash = {};
+	            var tag = '';
+	            for (var i = 0; i < data.length; i++) {
+	                tag = data[i].archive_type;
+	                if (!hash[tag]) {
+	                    hash[tag] = true;
+	                    tempTagArr.push(tag);
+	                }
+	            }
+	            _this.setState({
+	                tagInfo: tempTagArr
 	            });
 	        };
 
@@ -28405,7 +28905,7 @@
 
 	        _this.tagHandler = function (e) {
 	            var cur = e.currentTarget;
-	            var tagId = cur.getAttribute('data-id');
+	            var tagId = cur.getAttribute('data-tag');
 	            var allEle = cur.parentNode.children;
 	            for (var i = 0; i < allEle.length; i++) {
 	                allEle[i].classList.remove('has-click');
@@ -28413,15 +28913,19 @@
 	            cur.classList.add('has-click');
 	            console.log('clickTag' + tagId, cur);
 	            //点击分类获取数据，填充到indexArc
+	            HomeStore.getArcByTag({
+	                tag: tagId
+	            });
 	        };
 
 	        _this.state = {
 	            userInfo: {},
 	            indexArc: [],
-	            tagsArr: []
+	            tagInfo: [],
+	            tagArc: []
 	        };
 	        HomeStore.dispose();
-	        HomeStore.listen(['userInfo', 'indexArc'], _this);
+	        HomeStore.listen(['userInfo', 'indexArc', 'tagArc'], _this);
 	        return _this;
 	    }
 
@@ -28434,17 +28938,25 @@
 	            //获取文章列表数据
 	            HomeStore.getIndexArcData();
 	        }
+
+	        /* shouldComponentUpdate(nextProps,nextstate) {
+	             if(this.state.tagInfo != nextstate.tagInfo ){
+	                 return true;
+	             }
+	         }*/
+
 	    }, {
 	        key: 'render',
 	        value: function render() {
 	            //let arcData = indexArcData.result || [];
 	            //let userData = indexUserData.result || {};
-	            console.log('tagsData', _indexData.tagsData);
-	            var tagsArr = _indexData.tagsData.result || [];
+	            console.log('tempTagArr from database', this.state.tagInfo);
 
 	            var me = this;
 	            var userData = me.state.userInfo || {};
-	            var arcData = me.state.indexArc || [];
+	            var arcData = me.state.tagArc.length == 0 ? me.state.indexArc : me.state.tagArc;
+	            var tagsData = me.state.tagInfo || [];
+
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'archive-wrapper' },
@@ -28466,12 +28978,12 @@
 	                            _react2.default.createElement(
 	                                'div',
 	                                { className: 'tag-title' },
-	                                tagsArr.map(function (item, i) {
+	                                tagsData.map(function (item, i) {
 	                                    return _react2.default.createElement(
 	                                        'div',
-	                                        { className: 'tag-item', 'data-key': 'tag-' + i, 'data-id': item.tag_id,
+	                                        { className: 'tag-item', 'data-key': 'tag-' + i, 'data-tag': item,
 	                                            onClick: me.tagHandler.bind(me) },
-	                                        item.tag_name
+	                                        item
 	                                    );
 	                                })
 	                            )
@@ -28519,7 +29031,7 @@
 
 	var _reactRouterDom = __webpack_require__(160);
 
-	var _tap = __webpack_require__(221);
+	var _tap = __webpack_require__(220);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28530,6 +29042,8 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //ArchiveArticleItem.js
 	//文章归档页文章卡片
 
+
+	var Utils = __webpack_require__(213);
 
 	var ArchiveArticleItem = function (_React$Component) {
 	    _inherits(ArchiveArticleItem, _React$Component);
@@ -28553,6 +29067,7 @@
 	        value: function render() {
 	            var articleData = this.props.data;
 	            var link = '/detail/' + articleData._id;
+	            var time = Utils.getFormatTime(articleData.timestamp);
 	            return _react2.default.createElement(
 	                'article',
 	                { className: 'article-li' },
@@ -28562,7 +29077,7 @@
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'time' },
-	                        articleData.timestamp
+	                        time
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
@@ -28616,7 +29131,7 @@
 	var content = __webpack_require__(238);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(213)(content, {});
+	var update = __webpack_require__(212)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -28660,7 +29175,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	__webpack_require__(222);
+	__webpack_require__(221);
 
 	__webpack_require__(240);
 
@@ -28682,7 +29197,7 @@
 
 	var _ManageArcItem2 = _interopRequireDefault(_ManageArcItem);
 
-	var _AlertDialog = __webpack_require__(232);
+	var _AlertDialog = __webpack_require__(228);
 
 	var _AlertDialog2 = _interopRequireDefault(_AlertDialog);
 
@@ -28694,7 +29209,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //ManagePage.js 文章管理页
 
-	var HomeStore = __webpack_require__(224);
+	var HomeStore = __webpack_require__(223);
 
 	var ManagePage = function (_React$Component) {
 	    _inherits(ManagePage, _React$Component);
@@ -28780,13 +29295,6 @@
 	                key: 'user_name',
 	                name: '昵称',
 	                dafaultValue: '请输入昵称',
-	                required: true,
-	                callback: me.personInfoChange
-	            }, {
-	                type: 'Input',
-	                name: '密码',
-	                key: 'password',
-	                dafaultValue: '请输入密码',
 	                required: true,
 	                callback: me.personInfoChange
 	            }, {
@@ -29072,7 +29580,7 @@
 	var content = __webpack_require__(241);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(213)(content, {});
+	var update = __webpack_require__(212)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -29133,7 +29641,7 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //SwitchTab.js
 
 
-	var HomeStore = __webpack_require__(224);
+	var HomeStore = __webpack_require__(223);
 
 	var SwitchTab = function (_React$Component) {
 	    _inherits(SwitchTab, _React$Component);
@@ -29283,7 +29791,7 @@
 	var content = __webpack_require__(244);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(213)(content, {});
+	var update = __webpack_require__(212)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -29335,7 +29843,7 @@
 
 	var _reactRouterDom = __webpack_require__(160);
 
-	var _tap = __webpack_require__(221);
+	var _tap = __webpack_require__(220);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29346,6 +29854,8 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //ManageArcItem.js
 	//文章管理页卡片
 
+
+	var Utils = __webpack_require__(213);
 
 	var ArchiveArticleItem = function (_React$Component) {
 	    _inherits(ArchiveArticleItem, _React$Component);
@@ -29394,6 +29904,7 @@
 	            var nIndex = this.props.nIndex;
 	            var editLink = '/edit/' + articleData._id;
 	            var detailLink = '/detail/' + articleData._id;
+	            var time = Utils.getFormatTime(articleData.timestamp);
 	            return _react2.default.createElement(
 	                'article',
 	                { className: 'article-li' },
@@ -29403,7 +29914,7 @@
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'time' },
-	                        articleData.timestamp
+	                        time
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
@@ -29426,7 +29937,7 @@
 	                    ),
 	                    _react2.default.createElement(
 	                        'span',
-	                        { 'data-index': nIndex, 'data-id': articleData._id, onClick: this.delHandler },
+	                        { 'data-index': nIndex, 'data-id': articleData._id, onClick: (0, _tap.wrapperClick)(this.delHandler) },
 	                        '\u5220\u9664'
 	                    )
 	                )
@@ -29467,11 +29978,15 @@
 
 	var _HeaderNav2 = _interopRequireDefault(_HeaderNav);
 
-	var _FooterInfo = __webpack_require__(215);
+	var _FooterInfo = __webpack_require__(214);
 
 	var _FooterInfo2 = _interopRequireDefault(_FooterInfo);
 
 	var _indexData = __webpack_require__(208);
+
+	var _AlertDialog = __webpack_require__(228);
+
+	var _AlertDialog2 = _interopRequireDefault(_AlertDialog);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29483,10 +29998,11 @@
 
 	//ArchivePage.js 文章归档页
 
-	__webpack_require__(222);
+	__webpack_require__(221);
 	__webpack_require__(247);
 
-	var HomeStore = __webpack_require__(224);
+	var HomeStore = __webpack_require__(223);
+	var Utils = __webpack_require__(213);
 
 	var DetailArtPage = function (_Component) {
 	    _inherits(DetailArtPage, _Component);
@@ -29501,12 +30017,23 @@
 	            console.log('parames', me.props);
 	            var article_id = me.props.match.params.id || '';
 	            console.log('=====paramsid', article_id);
+	            //获取登陆信息
+	            _this.getLoginInfo();
 	            //获取用户信息
 	            HomeStore.getUserInfoData();
 	            //获取文章列表数据
 	            HomeStore.getIndexArcData();
+	            //获取评论列表数据
+	            HomeStore.getCommentData({ 'article_id': article_id });
 	            //获取文章详情数据
 	            HomeStore.getArcDetail({ 'article_id': article_id });
+	        };
+
+	        _this.getLoginInfo = function () {
+	            var loginData = Utils.getLoginInfo() || {};
+	            _this.setState({
+	                loginInfo: loginData
+	            });
 	        };
 
 	        _this.addReading = function () {
@@ -29548,6 +30075,16 @@
 	            });
 	        };
 
+	        _this.afterGetCommentList = function (data) {
+	            var me = _this;
+	            if (!data) {
+	                return;
+	            }
+	            me.setState({
+	                commentList: data
+	            });
+	        };
+
 	        _this.afterGetArcDetail = function (data) {
 	            var me = _this;
 	            console.log('ArcDetailData=======', data);
@@ -29564,25 +30101,268 @@
 	            });
 	        };
 
+	        _this.afterGetPostComment = function (data) {
+	            var me = _this;
+	            var commentList = _this.state.commentList;
+	            console.log('PostommentData=======', data);
+	            if (!data) {
+	                return;
+	            }
+	            //前端页面插入一条评论
+	            commentList.unshift(data);
+	            _this.setState({
+	                commentList: commentList
+	            });
+	        };
+
+	        _this.sendComment = function () {
+	            var loginName = _this.state.loginInfo.user_name;
+	            var inputValue = _this.refs.inputComment.value;
+	            var params = {};
+	            console.log('=======sendComment');
+	            if (loginName) {
+	                //处于登陆状态
+	                if (inputValue.length == 0) {
+	                    _this.setState({
+	                        dialogMsg: '评论内容不能为空',
+	                        showDialog: true
+	                    });
+	                } else {
+	                    params = {
+	                        'article_id': _this.state.article_id,
+	                        'commentor': loginName,
+	                        'comment': inputValue,
+	                        'timestamp': Date.now()
+	                    };
+	                    HomeStore.postComment(params);
+	                }
+	            } else {
+	                //用户未登陆
+	                _this.setState({
+	                    dialogMsg: '登陆后才能发表评论，去登陆',
+	                    showDialog: true
+	                });
+	            }
+	        };
+
+	        _this.handleUpvote = function () {
+	            var loginName = _this.state.loginInfo.user_name;
+	            var voteState = void 0;
+	            var params = {};
+	            if (loginName) {
+	                //处于登陆状态
+	                voteState = _this.state.upVote ? 0 : 1;
+	                params = {
+	                    'vote_state': voteState,
+	                    'article_id': _this.state.article_id,
+	                    'upvotor': loginName
+	                };
+	                HomeStore.doUpVote(params);
+	                _this.setState({
+	                    upVote: !_this.state.upVote
+	                });
+	            } else {
+	                //用户未登陆
+	                _this.setState({
+	                    dialogMsg: '登陆后才能进行点赞，去登陆',
+	                    showDialog: true
+	                });
+	            }
+	        };
+
+	        _this.closeDialog = function () {
+	            _this.setState({
+	                showDialog: false
+	            });
+	        };
+
+	        _this.confirmDialog = function (type) {
+	            var link = '/login';
+	            _this.setState({
+	                showDialog: false
+	            });
+	            if (type == 'jumpToLogin') {
+	                var url = location.href.replace(location.hash, '') + '#' + link;
+	                location.href = url;
+	            }
+	        };
+
+	        _this.getCommentDom = function () {
+	            var commentInfo = _this.state.commentList || [];
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'comments' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'post-comment' },
+	                    _react2.default.createElement(
+	                        'h3',
+	                        null,
+	                        '\u53D1\u8868\u8BC4\u8BBA'
+	                    ),
+	                    _react2.default.createElement('textarea', { name: 'input-comment', ref: 'inputComment', cols: '30', rows: '5' }),
+	                    _react2.default.createElement(
+	                        'h3',
+	                        { className: 'post-btn', onClick: _this.sendComment },
+	                        '\u53D1\u8868'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'comment-list' },
+	                    _react2.default.createElement(
+	                        'h3',
+	                        null,
+	                        '\u8BC4\u8BBA',
+	                        _react2.default.createElement(
+	                            'span',
+	                            { className: 'comment-count' },
+	                            commentInfo.length
+	                        )
+	                    ),
+	                    commentInfo.map(function (item, i) {
+	                        var formatTime = Utils.getFormatTime(item.timestamp);
+	                        console.log(' Utils.getFormatTime', Utils.getFormatTime('1496141174618'));
+	                        return _react2.default.createElement(
+	                            'setion',
+	                            { className: 'comment-item' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'avator' },
+	                                _react2.default.createElement('img', { src: item.avator, alt: '' })
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'text' },
+	                                _react2.default.createElement(
+	                                    'h3',
+	                                    { className: 'commentor' },
+	                                    item.commentor
+	                                ),
+	                                _react2.default.createElement(
+	                                    'h3',
+	                                    { className: 'comment-time' },
+	                                    formatTime
+	                                ),
+	                                _react2.default.createElement(
+	                                    'p',
+	                                    { className: 'comment-content' },
+	                                    item.comment
+	                                )
+	                            )
+	                        );
+	                    })
+	                )
+	            );
+	        };
+
+	        _this.getContentDom = function () {
+	            var arcDetail = _this.state.arcDetail || {};
+	            var userData = _this.state.userInfo || {};
+	            console.log('arcDetail.timestamp', arcDetail.timestamp);
+	            var time = Utils.getFormatTime(arcDetail.timestamp);
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'detail-content' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'title-wrapper' },
+	                    _react2.default.createElement(
+	                        'p',
+	                        { className: 'title' },
+	                        arcDetail.title
+	                    ),
+	                    _react2.default.createElement(
+	                        'h3',
+	                        { className: 'post' },
+	                        _react2.default.createElement(
+	                            'span',
+	                            null,
+	                            '\u53D1\u8868\u4E8E ',
+	                            time
+	                        ),
+	                        _react2.default.createElement(
+	                            'span',
+	                            { className: 'author' },
+	                            'By ',
+	                            _react2.default.createElement(
+	                                'strong',
+	                                null,
+	                                userData.user_name
+	                            )
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'remark' },
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        arcDetail.remark
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'content' },
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        arcDetail.detail
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'nextArc' },
+	                    _react2.default.createElement(
+	                        'h3',
+	                        null,
+	                        '\u4E0B\u4E00\u7BC7:'
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'js\u5224\u65AD\u6570\u636E\u7C7B\u578B\u7684\u51E0\u79CD\u65B9fa'
+	                    )
+	                ),
+	                _react2.default.createElement('div', { className: '' })
+	            );
+	        };
+
 	        _this.state = {
 	            userInfo: {},
 	            indexArc: [],
 	            arcDetail: {},
+	            commentList: [],
 	            read_count: 0,
-	            article_id: ''
+	            article_id: '',
+	            loginInfo: {},
+	            dialogMsg: '',
+	            showDialog: false,
+	            upVote: false
 	        };
 	        HomeStore.dispose();
-	        HomeStore.listen(['userInfo', 'indexArc', 'arcDetail', 'addReading'], _this);
+	        HomeStore.listen(['userInfo', 'indexArc', 'arcDetail', 'commentList', 'addReading', 'postComment', 'upvote'], _this);
 	        return _this;
 	    }
+
+	    //发表评论
+
+
+	    //点赞和取消点赞
+
 
 	    _createClass(DetailArtPage, [{
 	        key: 'render',
 	        value: function render() {
 
 	            var me = this;
+	            console.log('localcommentData', _indexData.commentData);
 	            var userData = me.state.userInfo || {};
-	            var arcDetail = me.state.arcDetail || {};
+	            var loginName = me.state.loginInfo.user_name;
+	            var upvote = me.state.upVote;
+	            var confirmDialog = loginName ? '' : me.confirmDialog.bind(me, 'jumpToLogin');
+
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'wrapper' },
@@ -29590,35 +30370,24 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'container' },
+	                    _react2.default.createElement(_AlertDialog2.default, { dialogShow: me.state.showDialog, content: me.state.dialogMsg, close: this.closeDialog, confirm: confirmDialog }),
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'main' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'detail-content' },
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'title' },
-	                                _react2.default.createElement(
-	                                    'p',
-	                                    null,
-	                                    arcDetail.title
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'content' },
-	                                _react2.default.createElement(
-	                                    'p',
-	                                    null,
-	                                    arcDetail.detail
-	                                )
-	                            )
-	                        )
-	                    ),
-	                    _react2.default.createElement('div', { className: 'asidepart' })
+	                        this.getContentDom(),
+	                        this.getCommentDom()
+	                    )
 	                ),
-	                _react2.default.createElement(_FooterInfo2.default, { data: userData })
+	                _react2.default.createElement(
+	                    'ul',
+	                    { className: 'comment-wrapper' },
+	                    _react2.default.createElement(
+	                        'li',
+	                        null,
+	                        _react2.default.createElement('span', { className: upvote ? "icon like-icon" : "icon dislike-icon", onClick: this.handleUpvote }),
+	                        '\u8D5E'
+	                    )
+	                )
 	            );
 	        }
 	    }]);
@@ -29640,7 +30409,7 @@
 	var content = __webpack_require__(248);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(213)(content, {});
+	var update = __webpack_require__(212)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -29665,13 +30434,25 @@
 
 
 	// module
-	exports.push([module.id, ".detail-content {\n  width: 100%;\n}\n.detail-content .title {\n  font-size: 16px;\n  color: #2ca6cb;\n  padding: 10px;\n}\n.detail-content .content {\n  padding: 10px;\n}\n", ""]);
+	exports.push([module.id, ".comment-wrapper {\n  width: 100%;\n  position: fixed;\n  bottom: 0;\n  left: 0;\n  background-color: #fafafa;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: end;\n  -ms-flex-pack: end;\n  justify-content: flex-end;\n  border-top: 1px solid #dbdbdb;\n  font-size: 16px;\n}\n.comment-wrapper li {\n  padding: 14px;\n}\n.comment-wrapper .icon {\n  display: inline-block;\n  width: 0.4rem;\n  height: 0.4rem;\n}\n.comment-wrapper span {\n  vertical-align: middle;\n}\n.comment-wrapper .like-icon {\n  background: url(" + __webpack_require__(249) + ") no-repeat;\n  background-size: 100% auto;\n}\n.comment-wrapper .dislike-icon {\n  background: url(" + __webpack_require__(250) + ") no-repeat;\n  background-size: 100% auto;\n}\n.detail-content {\n  width: 100%;\n  background-color: #fff;\n}\n.detail-content .title-wrapper .title {\n  color: #2ca6cb;\n  padding: 10px;\n  font-size: 16px;\n  line-height: 1.8;\n  border-left: 5px solid #3c9;\n}\n.detail-content .title-wrapper .post {\n  text-align: right;\n}\n.detail-content .title-wrapper .post .author {\n  margin-left: 20px;\n}\n.detail-content .title-wrapper .post .author strong {\n  color: #2ca6cb;\n  font-weight: normal;\n}\n.detail-content .remark {\n  padding: 10px;\n  text-indet: 5px;\n  font-size: 16px;\n}\n.detail-content .remark p {\n  text-indent: 16px;\n}\n.detail-content .content {\n  padding: 10px;\n  font-size: 16px;\n}\n.detail-content .content p {\n  text-indent: 16px;\n}\n.detail-content .nextArc {\n  text-align: right;\n  padding: 10px;\n  color: #2ca6cb;\n  font-size: 16px;\n}\n.detail-content .nextArc h3 {\n  font-weight: bold;\n}\n.comments .post-comment {\n  background: #fff;\n  margin-top: 10px;\n  padding: 0 10px;\n}\n.comments .post-comment h3 {\n  padding: 10px 0;\n}\n.comments .post-comment textarea {\n  width: 100%;\n  border: 1px dotted #e0e0e0;\n  padding: 6px;\n  font-size: 15px;\n  box-sizing: border-box;\n}\n.comments .comment-list {\n  background: #fff;\n  margin-top: 10px;\n  margin-bottom: 46px;\n  padding: 0 10px;\n}\n.comments .comment-list > h3 {\n  padding-top: 10px;\n}\n.comments .comment-list > h3 .comment-count {\n  padding: 0 6px;\n}\n.comments .comment-list .comment-item {\n  border-bottom: 1px solid #f1f1f1;\n  padding: 10px 0;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\n.comments .comment-list .comment-item .avator {\n  border-radius: 50%;\n  width: 1rem;\n  height: 1rem;\n  overflow: hidden;\n}\n.comments .comment-list .comment-item .text {\n  margin-left: 10px;\n}\n", ""]);
 
 	// exports
 
 
 /***/ }),
 /* 249 */
+/***/ (function(module, exports) {
+
+	module.exports = "\"data:image/svg+xml,%3C?xml version='1.0' standalone='no'?%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg t='1496151113317' class='icon' style='' viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='4431' xmlns:xlink='http://www.w3.org/1999/xlink' width='200' height='200'%3E%3Cdefs%3E%3Cstyle type='text/css'%3E%3C/style%3E%3C/defs%3E%3Cpath d='M669.781333 130.752c71.637333-11.093333 138.901333 11.477333 193.344 64.533333 55.317333 53.930667 81.834667 124.992 74.282667 199.530667-7.466667 73.642667-46.549333 146.368-112.32 210.474667-18.346667 17.898667-67.669333 66.218667-138.453333 135.637333-31.829333 31.232-65.706667 64.448-99.84 97.984L553.6 871.466667l-13.184 12.949333a40.554667 40.554667 0 0 1-56.832 0l-114.602667-112.64-24.213333-23.722667a677626.346667 677626.346667 0 0 0-145.856-142.762666C133.141333 541.184 94.08 468.48 86.613333 394.816c-7.552-74.538667 18.944-145.6 74.282667-199.530667 54.442667-53.056 121.706667-75.605333 193.344-64.533333 53.162667 8.213333 107.093333 34.688 157.781333 76.949333 50.709333-42.24 104.618667-68.736 157.781334-76.949333z' fill='%2308c97f' p-id='4432'%3E%3C/path%3E%3C/svg%3E\""
+
+/***/ }),
+/* 250 */
+/***/ (function(module, exports) {
+
+	module.exports = "\"data:image/svg+xml,%3C?xml version='1.0' standalone='no'?%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg t='1496151043996' class='icon' style='' viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='4062' xmlns:xlink='http://www.w3.org/1999/xlink' width='200' height='200'%3E%3Cdefs%3E%3Cstyle type='text/css'%3E%3C/style%3E%3C/defs%3E%3Cpath d='M523.733333 841.024l33.173334-32.576 99.690666-97.813333c70.976-69.632 120.32-117.973333 138.709334-135.893334 59.008-57.514667 93.248-121.28 99.626666-184.234666 6.250667-61.44-15.488-119.744-61.589333-164.672-44.992-43.84-98.88-61.909333-157.034667-52.906667-49.365333 7.616-101.034667 34.624-150.016 78.848a21.333333 21.333333 0 0 1-28.586666 0c-48.981333-44.224-100.650667-71.232-150.016-78.869333-58.154667-8.96-112.042667 9.088-157.034667 52.928-46.101333 44.928-67.84 103.210667-61.610667 164.693333 6.4 62.933333 40.64 126.72 99.648 184.213333a100207.573333 100207.573333 0 0 1 145.92 142.826667l24.256 23.765333L512 852.522667l11.733333-11.498667z m-11.733333 11.52l-1.493333 1.429333A2.133333 2.133333 0 0 1 512 853.333333c0.512 0 1.045333 0.213333 1.493333 0.64l-1.493333-1.450666z m157.781333-721.792c71.637333-11.093333 138.901333 11.477333 193.344 64.533333 55.317333 53.930667 81.834667 124.992 74.282667 199.530667-7.466667 73.642667-46.549333 146.368-112.32 210.474667-18.346667 17.898667-67.669333 66.218667-138.453333 135.637333-31.829333 31.232-65.706667 64.448-99.84 97.984L553.6 871.466667l-13.184 12.949333a40.554667 40.554667 0 0 1-56.832 0l-114.602667-112.64-24.213333-23.722667a677626.346667 677626.346667 0 0 0-145.856-142.762666C133.141333 541.184 94.08 468.48 86.613333 394.816c-7.552-74.538667 18.944-145.6 74.282667-199.530667 54.442667-53.056 121.706667-75.605333 193.344-64.533333 53.162667 8.213333 107.093333 34.688 157.781333 76.949333 50.709333-42.24 104.618667-68.736 157.781334-76.949333z' fill='%2308c97f' p-id='4063'%3E%3C/path%3E%3C/svg%3E\""
+
+/***/ }),
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-api@0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\xmx\\Desktop\\副本-移动端博客\\mobileblog\\node_modules\\_react-hot-loader@1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -29700,7 +30481,7 @@
 	//import './pay.less' 
 
 
-	__webpack_require__(222);
+	__webpack_require__(221);
 
 	var PayPage = function (_Component) {
 	    _inherits(PayPage, _Component);

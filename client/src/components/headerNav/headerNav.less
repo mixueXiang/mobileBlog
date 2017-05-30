@@ -12,8 +12,6 @@ header {
 			float: left;
 			width: 1.2rem;
 			height: 1.2rem;
-			background: url('../../static/images/logo.png') no-repeat;
-			background-size: 100% 100%;
 			border-radius: 100%;
 			overflow: hidden;
 		}
@@ -34,24 +32,26 @@ header {
 				font-size: 12px;
 			}
 		}
-		.nav {
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			width: 100%;
-			display: flex;
-			justify-content: space-around;
-			li {
-				padding: 0 5px 1px 5px;
-    			border-bottom: 2px solid transparent;
-				a {
-					color: white;
-					font-size: 15px;
-				}
-			}
-			.has-click {
-				border-bottom: 3px solid #fff;
-			}
-		}
 	}	
+}
+
+.nav {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	color: #fff;
+	li {
+		padding: 0 5px 1px 5px;
+		border-bottom: 2px solid transparent;
+		a {
+			color: white;
+			font-size: 15px;
+		}
+	}
+	.has-click {
+		border-bottom: 3px solid #fff;
+	}
 }

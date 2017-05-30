@@ -1,17 +1,14 @@
-//LoginPage.js 登陆页
+//RegisterPage.js 注册页
 
 import '../../static/css/layout.less';
-import './login.less';
+import '../login/login.less';
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import HeaderNav from '../../components/headerNav/HeaderNav';
 import AlertDialog from '../../components/alertDialog/AlertDialog';
-import {wrapperClick} from '../../utils/tap';
 var HomeStore = require('../../components/HomeStore');
 
-//localStorage.clear();
-
-export default class LoginPage extends React.Component {
+export default class RegisterPage extends React.Component {
     
 	constructor(props) {
 	    super(props);
@@ -23,15 +20,13 @@ export default class LoginPage extends React.Component {
             dialogMsg: ''
 	    };
 	    HomeStore.dispose();
-	    HomeStore.listen(['userInfo', 'doLogin'], this);
+	    HomeStore.listen(['userInfo', 'doRegister'], this);
 	}
 
 	componentDidMount() {
 	    const me = this;
 	    //获取用户信息
 	    HomeStore.getUserInfoData();
-        //获取用户登录信息
-        me.getLoginInfo();
 	}
 
 	afterGetUserInfo = (data) => {
@@ -45,19 +40,14 @@ export default class LoginPage extends React.Component {
 	    });
 	}
 
-    afterGetDoLogin = (data) => {
+    afterGetDoRegister = (data) => {
         const me = this;
         let loginInfo = {};
         let validInfo = '';
         if(!data) {
             return;
         }
-        if (data.error_code == 2 && data.result) {
-            if (window.localStorage) {
-                let storage = window.localStorage;
-                loginInfo = JSON.stringify(data.result);
-                storage.setItem('login',loginInfo);
-            }
+        if (data.error_code == 0) {
             this.setState({
                 showDialog: true,
                 dialogMsg: data.error_msg
@@ -69,21 +59,10 @@ export default class LoginPage extends React.Component {
         }
     }
 
-    //获取用户登录信息
-    getLoginInfo = () => {
-        let storage = window.localStorage;
-        if (storage && storage.login) {
-            let loginData = JSON.parse(storage.login);
-            console.log('=====LoginPage LoginInfo', loginData );
-            this.setState({
-                loginInfo: loginData
-            });
-        }
-    }
-
-    loginHandler = () => {
+    registerHandler = () => {
         let userName = this.refs.userName;
         let password = this.refs.password;
+        let passwordAgain = this.refs.passwordAgain;
         let params = {};
 
         //输入有效性验证
@@ -111,28 +90,35 @@ export default class LoginPage extends React.Component {
             });
             return;
         }
-
+        if (passwordAgain.value == '') {
+            this.setState({
+                validInfo: '请再次输入密码'
+            });
+            return;
+        }
+        if (password.value != passwordAgain.value) {
+            this.setState({
+                validInfo: '密码不一致，请重新输入'
+            });
+            return;
+        }
+ 
         params = {
             user_name: userName.value || '',
             password: password.value || ''
         }
-        HomeStore.doLogin(params);
+        HomeStore.doRegister(params);
     }
 
     closeDialog = (type) => {
         this.setState({
             showDialog: false,
         }, () => {
-            if (type == 'loginSccess') {
-                location.href = location.href.replace(location.hash, '') + '#' + '/index';
+            if (type == 'registerSuccess') {
+                location.href = location.href.replace(location.hash, '') + '#' + '/login';
             }
         });
     } 
-
-    jumpToRegister = () => {
-        let link = '/register';
-        location.href = location.href.replace(location.hash, '') + '#' + link;
-    }
 
     render() {
     	const me = this;
@@ -143,17 +129,18 @@ export default class LoginPage extends React.Component {
             <div className="wrapper">
                 <HeaderNav data={userData}></HeaderNav>
                 <div className="container">
-                <AlertDialog dialogShow={me.state.showDialog} content={me.state.dialogMsg}  close={this.closeDialog.bind(this,'loginSccess')}></AlertDialog>
+                    <AlertDialog dialogShow={me.state.showDialog} content={me.state.dialogMsg}  close={this.closeDialog.bind(this,'registerSuccess')}></AlertDialog>
                     <div className="main">  
                     	<div className="login-wrapper">
                     		<div className="input-wrapper">
                     			<label>账号：</label><input ref="userName" type="text" placeholder="请输入账号"/><br/>
-                    			<label>密码：</label><input ref="password" type="password" placeholder="请输入密码"/>
+                    			<label>密码：</label><input ref="password" type="password" name="password1" placeholder="请输入密码"/><br/>
+                                <label>确认密码：</label><input ref="passwordAgain" type="password" name="password2" placeholder="再次输入密码"/>
                     			<h3 className="error-info" ref="validInfo">{validInfo}</h3>
-                    			<div className="login-conform" onClick={me.loginHandler}>登录</div>
+                    			<div className="login-conform" onClick={me.registerHandler}>注册</div>
                     		</div>
                     		<div className="else-login">
-                                <p onClick={this.jumpToRegister}>新用户注册</p>
+                                
                     		</div>
                     	</div>                
                     </div>

@@ -6,10 +6,16 @@ var indexArcSchema = new Schema({
 	timestamp: Date,
 	title: String,
 	remark: String,
-	read_count: Number, 
+	read_count: {
+		type: Number,
+		default: 0
+	}, 
 	detail: String,
 	comment_list: Array,
-	upvote_count: Number,
+	upvote_count: {
+		type: Number,
+		default: 0
+	},
 	archive_type:String,
 }, {
 	collection: 'indexarc',

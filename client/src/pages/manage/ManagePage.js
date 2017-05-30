@@ -122,13 +122,6 @@ export default class ManagePage extends React.Component {
             callback: me.personInfoChange
     	},{
             type: 'Input',
-            name: '密码',
-            key: 'password',
-            dafaultValue: '请输入密码',
-            required: true,
-            callback: me.personInfoChange
-        },{
-            type: 'Input',
             name: '邮箱',
             key: 'email',
             dafaultValue: '请输入邮箱',
@@ -302,7 +295,7 @@ export default class ManagePage extends React.Component {
             <div className="manage-wrapper">
                 <HeaderNav data={userData}></HeaderNav>
                 <div className="container">
-                <AlertDialog dialogShow={me.state.showDialog} content={me.state.dialogMsg}  close={this.closeDialog}></AlertDialog>
+                    <AlertDialog dialogShow={me.state.showDialog} content={me.state.dialogMsg}  close={this.closeDialog}></AlertDialog>
                     <div className="main">  
                     	<div className="manage-tab">
         		        	<div className="tab-wrapper">
